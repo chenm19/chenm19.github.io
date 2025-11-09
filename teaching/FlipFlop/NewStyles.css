@@ -1,0 +1,34 @@
+/*
+∗ NewStyles.css
+∗ This CSS style sheet styles the background, color, and the game board
+∗ Weijia Li, Yueying He, Chloe Zheng
+∗ December 3, 2019
+∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗
+ */
+
+body {
+    background-image: url('wood.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+div#memory_board{
+    background: #cca678;
+    border: #1d990d 1px solid;
+    width:800px;
+    height:400px;
+    padding:24px;
+    margin:0px auto;
+}
+div#memory_board > div{
+    background: url('Rabbit_Face_Emoji.png') no-repeat;
+    border: #000000 1px solid;
+    width:70px;
+    height:70px;
+    float:left;
+    margin:10px;
+    padding:20px;
+    font-size:64px;
+    cursor:pointer;
+    text-align:center;
+}

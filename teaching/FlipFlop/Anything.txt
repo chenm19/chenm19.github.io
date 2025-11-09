@@ -1,0 +1,9 @@
+/*
+∗ Anything.txt
+∗ This files explain the memory game
+∗ Weijia Li, Yueying He, Chloe Zheng
+∗ December 3, 2019
+∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗
+ */
+
+The Flip Flop Game is a great exercise for those who want to enhance their short-term visual memory performance. In this game, a letter appears when the participant clicks on each tile. The participant needs to remember the location of the tile and match up the two tiles with the same letters. The game ends when participants have matched up all tiles.  

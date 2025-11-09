@@ -1,0 +1,33 @@
+<!--
+∗ FlipFlop.html
+∗ This html file creates a website for the memory game and displays instructions for the game. It also adds sound effect
+* and restart alert
+∗ Weijia Li, Yueying He, Chloe Zheng
+∗ December 3, 2019
+∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="Game">
+    <meta name="author" content="Weijia Li, Yueying He, Chloe Zheng">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="NewStyles.css">
+    <script src="Game.js"></script>
+</head>
+<body>
+<audio controls autoplay loop>
+    <source src = "music.mp3" type="audio/mpeg"></audio>
+<h1 style="text-align: center">Flip Flop Game</h1>
+<p style="text-align: center">Welcome to our Game!</p>
+<p style="text-align: center">You will see several blocks appear on the screen with a letter on the back.</p>
+<p style="text-align: center">Click on each block and you will see the letters</p>
+<p style="text-align: center">Your job is to match them up. Wish you good luck in this game! </p>
+
+<div id="memory_board"><button>Restart</button></div>
+
+<script>newBoard();</script>
+
+</body>
+</html>
