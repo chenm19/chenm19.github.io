@@ -1,1 +1,56 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Game Projects</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body { padding: 40px; }
+    h2 { margin-bottom: 20px; }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    li {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease;
+    }
+    li:hover { transform: translateY(-3px); }
+    a {
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <h2>Undergraduate Game Projects</h2>
+  <p>Explore interactive games developed by students in CSC 111.</p>
+
+  <ul>
+    <li><a href="RockPaperScissor/index.html">Rock Paper Scissors</a></li>
+    <li><a href="Wakesweeper/index.html">Wakesweeper</a></li>
+    <li><a href="blackjack/index.html">Blackjack</a></li>
+    <li><a href="Waldo/index.html">Find Waldo</a></li>
+    <li><a href="FlipFlop/index.html">FlipFlop</a></li>
+    <li><a href="GoBang/index.html">GoBang</a></li>
+    <li><a href="connectfour/index.html">Connect Four</a></li>
+    <li><a href="puzzle/index.html">Puzzle Game</a></li>
+    <li><a href="2048/index.html">2048</a></li>
+    <li><a href="battleship/index.html">Battleship</a></li>
+    <li><a href="snake/index.html">Snake</a></li>
+    <li><a href="mementopuzzle/index.html">Memento Puzzle</a></li>
+    <li><a href="flappypig/index.html">Flappy Pig</a></li>
+  </ul>
+</body>
+</html>
