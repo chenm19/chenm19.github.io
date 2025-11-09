@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flip the card!!</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" charset="utf-8" defer></script>
+</head>
+<body>
+
+<!-- ideal steps and the steps actually taken -->
+<h3>Steps taken: <br><br><br>Ideal: <br>5</h3>
+<div class = "counting_clicks" id="steps">0</div>
+
+<!-- all pictures stored here -->
+<div id="fl_container">
+    <div id="one" class="">
+        <div id="a" class="front face">
+            <img src="./img/level3/x1y1.jpg" alt="x1y1">
+        </div>
+        <div id="aa" class="back face">
+            <img src="./img/level3/a1b1.jpg" alt="a1b1">
+        </div>
+    </div>
+
+    <div id="two" class="">
+        <div id="b" class="front face">
+            <img src="./img/level3/x1y2.jpg" alt="x1y2">
+        </div>
+        <div id="bb" class="back face">
+            <img src="./img/level3/a1b2.jpg" alt="a1b2">
+        </div>
+    </div>
+
+    <div id="three" class="flip">
+        <div id="c" class="front face">
+            <img src="./img/level3/x1y3.jpg" alt="x1y3">
+        </div>
+        <div id="cc" class="back face">
+            <img src="./img/level3/a1b3.jpg" alt="a1b3">
+        </div>
+    </div>
+
+    <div id="four" class="">
+        <div id="d" class="front face">
+            <img src="./img/level3/x1y4.jpg" alt="x1y4">
+        </div>
+        <div id="dd" class="back face">
+            <img src="./img/level3/a1b4.jpg" alt="a1b4">
+        </div>
+    </div>
+
+    <div id="five" class="">
+        <div id="e" class="front face">
+            <img src="./img/level3/x2y1.jpg" alt="x2y1">
+        </div>
+        <div id="ee" class="back face">
+            <img src="./img/level3/a2b1.jpg" alt="a2b1">
+        </div>
+    </div>
+
+    <div id="six" class="">
+        <div id="f" class="front face">
+            <img src="./img/level3/x2y2.jpg" alt="x2y2">
+        </div>
+        <div id="ff" class="back face">
+            <img src="./img/level3/a2b2.jpg" alt="a2b2">
+        </div>
+    </div>
+
+    <div id="seven" class="">
+        <div id="g" class="front face">
+            <img src="./img/level3/x2y3.jpg" alt="x2y3">
+        </div>
+        <div id="gg" class="back face">
+            <img src="./img/level3/a2b3.jpg" alt="a2b3">
+        </div>
+    </div>
+
+    <div id="eight" class="flip">
+        <div id="h" class="front face">
+            <img src="./img/level3/x2y4.jpg" alt="x2y4">
+        </div>
+        <div id="hh" class="back face">
+            <img src="./img/level3/a2b4.jpg" alt="a2b4">
+        </div>
+    </div>
+
+    <div id="nine" class="flip">
+        <div id="i" class="front face">
+            <img src="./img/level3/x3y1.jpg" alt="x3y1">
+        </div>
+        <div id="ii" class="back face">
+            <img src="./img/level3/a3b1.jpg" alt="a3b1">
+        </div>
+    </div>
+
+    <div id="ten" class="">
+        <div id="j" class="front face">
+            <img src="./img/level3/x3y2.jpg" alt="x3y2">
+        </div>
+        <div id="jj" class="back face">
+            <img src="./img/level3/a3b2.jpg" alt="a3b2">
+        </div>
+    </div>
+
+    <div id="eleven" class="">
+        <div id="k" class="front face">
+            <img src="./img/level3/x3y3.jpg" alt="x3y3">
+        </div>
+        <div id="kk" class="back face">
+            <img src="./img/level3/a3b3.jpg" alt="a3b3">
+        </div>
+    </div>
+
+    <div id="twelve" class="">
+        <div id="l" class="front face">
+            <img src="./img/level3/x3y4.jpg" alt="x3y4">
+        </div>
+        <div id="ll" class="back face">
+            <img src="./img/level3/a3b4.jpg" alt="a3b4">
+        </div>
+    </div>
+
+    <div id="thirteen" class="">
+        <div id="m" class="front face">
+            <img src="./img/level3/x4y1.jpg" alt="x4y1">
+        </div>
+        <div id="mm" class="back face">
+            <img src="./img/level3/a4b1.jpg" alt="a4b1">
+        </div>
+    </div>
+
+    <div id="fourteen" class="flip">
+        <div id="n" class="front face">
+            <img src="./img/level3/x4y2.jpg" alt="x4y2">
+        </div>
+        <div id="nn" class="back face">
+            <img src="./img/level3/a4b2.jpg" alt="a4b2">
+        </div>
+    </div>
+
+    <div id="fifteen" class="">
+        <div id="o" class="front face">
+            <img src="./img/level3/x4y3.jpg" alt="x4y3">
+        </div>
+        <div id="oo" class="back face">
+            <img src="./img/level3/a4b3.jpg" alt="a4b3">
+        </div>
+    </div>
+
+    <div id="sixteen" class="">
+        <div id="p" class="front face">
+            <img src="./img/level3/x4y4.jpg" alt="x4y4">
+        </div>
+        <div id="pp" class="back face">
+            <img src="./img/level3/a4b4.jpg" alt="a4b4">
+        </div>
+    </div>
+</div>
+
+<!-- all buttons stored here -->
+<button class="btn_row_one" id="flip_content_one"><img src="./img/ball.svg" alt="button" width="50" height="50"/></button>
+<button class="btn_row_two" id="flip_content_two"><img src="./img/ball.svg" alt="button" width="50" height="50"/></button>
+<button class="btn_row_three" id="flip_content_three"><img src="./img/ball.svg" alt="button" width="50" height="50"/></button>
+<button class="btn_row_four" id="flip_content_four"><img src="./img/ball.svg" alt="button" width="50" height="50"/></button>
+<button class="btn_col_one" id="flip_content_five"><img src="./img/ball.svg" alt="button" width="50" height="50"/></button>
+<button class="btn_col_two" id="flip_content_six"><img src="./img/ball.svg" alt="button" width="50" height="50"/></button>
+<button class="btn_col_three" id="flip_content_seven"><img src="./img/ball.svg" alt="button" width="50" height="50"/></button>
+<button class="btn_col_four" id="flip_content_eight"><img src="./img/ball.svg" alt="button" width="50" height="50"/></button>
+<button class="btn_diagonal" id="flip_content_nine"><img src="./img/ball.svg" alt="button" width="50" height="50"/></button>
+
+<!-- button for going back to the menu -->
+<ul>
+    <li><a href="./index.html"><button type="button" class="menu_one">Menu</button></a></li>
+</ul>
+
+<!-- name for the pic -->
+<div id="container" class="game_over">
+<p><a>
+    Nagasaki, Japan
+  </a></p>
+</div>
+
+</body>
+</html>

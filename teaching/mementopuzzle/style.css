@@ -1,0 +1,408 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, fantasy;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+h2 {
+    position: absolute;
+    left: 270px;
+    top: 200px;
+    text-align: left;
+    font-size: x-large;
+    color: white;
+}
+
+h3 {
+    position: absolute;
+    left: 1050px;
+    top: 250px;
+    text-align: left;
+    font-size: x-large;
+    color: lightpink;
+}
+
+h4 {
+    position: absolute;
+    left: 550px;
+    top: 565px;
+    text-align: center;
+    font-size: medium;
+    color: white;
+}
+
+.counting_clicks {
+    position: absolute;
+    left: 1050px;
+    top: 275px;
+    text-align: left;
+    font-size: x-large;
+    color: lightpink;
+}
+/* glowing effect */
+p {
+    position:absolute;
+    text-align: center;
+    font-size: xx-large;
+    left: 550px;
+    top: 70px;
+
+}
+
+a {
+  text-decoration: none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+p:nth-child(1) a {
+  color: #fff;
+  font-family: sans-serif;
+  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+  animation: neon1 1.5s ease-in-out infinite alternate;
+
+}
+
+p:nth-child(1) a:hover {
+  color: #FF1177;
+  -webkit-animation: none;
+  -moz-animation: none;
+  animation: none;
+}
+
+p a:hover {
+  color: #ffffff;
+}
+
+/*glow for webkit*/
+
+@-webkit-keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
+}
+
+/*property of pics*/
+#fl_container {
+    width: 614px;
+    height: 345px;
+    perspective: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+}
+ #one {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#two {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#three {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#four {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#five {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#six {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#seven {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#eight {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#nine {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#ten {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#eleven {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#twelve {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#thirteen {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#fourteen {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#fifteen {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+#sixteen {
+    position: relative;
+    width: 25%;
+    height: 25%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+/*flipping effect*/
+.flip {
+    transform: rotateY(180deg);
+
+}
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+
+}
+.face img {
+    width: 100%;
+    height: 100%;
+}
+.back {
+    background-color: #333;
+    color: #fff;
+    transform: rotateY(180deg);
+}
+
+/*property of round buttons*/
+.btn_row_one{
+    position: absolute;
+    left: 270px;
+    top: 175px;
+    border-style:none;
+    background-color: inherit;
+}
+.btn_row_one:hover{
+    cursor:pointer;
+}
+.btn_row_two{
+    position: absolute;
+    left: 270px;
+    top: 260px;
+    border-style:none;
+    background-color: inherit;
+}
+.btn_row_two:hover{
+    cursor:pointer;
+}
+.btn_row_three{
+    position: absolute;
+    left: 270px;
+    top: 345px;
+    border-style:none;
+    background-color: inherit;
+}
+.btn_row_three:hover{
+    cursor:pointer;
+}
+.btn_row_four{
+    position: absolute;
+    left: 270px;
+    top: 430px;
+    border-style:none;
+    background-color: inherit;
+}
+.btn_row_four:hover{
+    cursor:pointer;
+}
+.btn_col_one{
+    position: absolute;
+    left: 430px;
+    top: 530px;
+    border-style:none;
+    background-color: inherit;
+}
+.btn_col_one:hover{
+    cursor:pointer;
+}
+.btn_col_two{
+    position: absolute;
+    left: 580px;
+    top: 530px;
+    border-style:none;
+    background-color: inherit;
+}
+.btn_col_two:hover{
+    cursor:pointer;
+}
+.btn_col_three{
+    position: absolute;
+    left: 740px;
+    top: 530px;
+    border-style:none;
+    background-color: inherit;
+}
+.btn_col_three:hover{
+    cursor:pointer;
+}
+.btn_col_four{
+    position: absolute;
+    left: 895px;
+    top: 530px;
+    border-style:none;
+    background-color: inherit;
+}
+.btn_col_four:hover{
+    cursor:pointer;
+}
+.btn_diagonal{
+    position: absolute;
+    left: 270px;
+    top: 530px;
+    border-style:none;
+    background-color: inherit;
+}
+.btn_diagonal:hover{
+    cursor:pointer;
+}
+
+/*property of block buttons*/
+.menu_one {
+    display: block;
+    width: 10%;
+    border: none;
+    background-color: lightpink;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+    left: 1060px;
+    top: 180px;
+}
+
+.menu_two {
+    display: block;
+    width: 10%;
+    border: none;
+    background-color: lightpink;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+    left: 1060px;
+    top: 180px;
+}
+
+.block_one {
+    display: block;
+    width: 15%;
+    border: none;
+    background-color: lightpink;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+    left: 270px;
+    top: 450px;
+}
+
+.block_two {
+    display: block;
+    width: 15%;
+    border: none;
+    background-color: lightpink;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+    left: 570px;
+    top: 450px;
+}
+
+.block_three {
+    display: block;
+    width: 15%;
+    border: none;
+    background-color: lightpink;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+    left: 870px;
+    top: 450px;
+}
