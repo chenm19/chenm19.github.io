@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Final_SnakeGame</title>
+</head>
+<body>
+
+<audio controls>
+  <source src=http://ys.yisell.com/yisell/yays2018050819052088/sound/yisell_sound_2010072017201643890_88016.mp3>
+</audio>
+<h1 style="text-align:center;">Snake Game</h1>
+<p style="text-align:center;font-weight: bold;"> Your goal is to eat the red targets and avoid running to the walls or the tail.</p>
+
+<style>
+body {
+  background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587336555507&di=f60fcc238625c2eb53b469263d713e21&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05%2F59%2F00%2F225b34f6e1e1bba.jpg);
+}
+</style>
+
+<style>
+#myCanvas {
+    box-shadow: 0 0 50px #010;
+    display: block;
+    margin: 0 auto;
+
+}
+
+</style>
+
+
+
+<div>
+  <input type="button" value="Let's go!" onclick="startGame();" style="display: block; margin: 0 auto;">
+</div>
+
+<br/>
+<canvas id="myCanvas" width="400" height="400"></canvas>
+
+
+<script>
+
+//snake moves automatically towards the head's direction
+function move() {
+    snakeMove(head.d);
+}
+
+// start the game with the set moving speed
+var isMove = false;
+function startGame() {
+    if(!isMove){
+    setInterval(move, 200);
+    isMove = true;
+    }
+}
+
+// call the canvas 
+var canvas = document.getElementById("myCanvas");
+var context = canvas.getContext("2d"); // the context of the canvas
+var w = 15; // the height & width of each grid
+var snake = []; // an array of the snake cells' content
+var snakeLen = 7; // the original length of the snake
+
+// initialize the snake body cells' corrdinates and moving direction
+for (var i = 0; i < snakeLen; i++) {
+    snake[i] = new cell(i, 0, 40);
+}
+
+// declare the head of the snake (the rightmost cell)
+var head = snake[snakeLen - 1]; 
+
+// the object for snake's cells (coordinates and direction)
+function cell(x, y, d) {
+    this.x = x;
+    this.y = y;
+    this.d = d;
+    return this;
+}
+
+// randomize the location of food's appearance
+var foodx = Math.ceil(Math.random() * 25 + 1);
+var foody = Math.ceil(Math.random() * 25 + 1);
+// declare the target: food
+var food = new Food(foodx, foody);
+
+// the object for food (coordinates)
+function Food(x, y) {
+    this.x = x;
+    this.y = y;
+    return this;
+}
+
+// create the function to draw the snake 
+function appear() {
+	// clear the pixels in the rectangle
+    context.clearRect(0, 0, 500, 500);
+    
+    // draw the body of the snake
+    for (var i = 0; i < snake.length; i++) {
+        context.fillStyle = "yellow";
+        // fill a different color for the snake's head
+        if (i == snake.length - 1) {
+            context.fillStyle = "white";
+        }
+        context.beginPath();
+        context.arc(snake[i].x * w+5, snake[i].y * w+5, w/2, 0, 2 * Math.PI);
+        context.closePath();
+        context.fill();
+        context.stroke();
+    }
+    // the food appears
+    foodAppear();
+    
+    // when the snake met the food
+    if (head.x == food.x && head.y == food.y) {
+    	// call the function to initialize the food
+        initialFood();
+        // the food coordinates update 
+        food = new Food(foodx, foody);
+        // a new food will appear
+        foodAppear();
+
+        // increase the length of the snake by creating a new cell 
+        // depending on the snake head's position and direction
+        var newCell = new cell(head.x, head.y, head.d);
+        switch (head.d) {
+            case 40:
+                newCell.y++;
+                break; //if head's going down
+            case 39:
+                newCell.x++;
+                break; //if head's going right
+            case 38:
+                newCell.y--;
+                break; //if head's going up
+            case 37:
+                newCell.x--;
+                break; //if head's going left
+        }
+        //update the snake with the new cell
+        snake[snake.length] = newCell;
+        head = newCell;
+    }
+}
+
+// the function to let food appear
+function foodAppear() {
+    // manage the context of the food
+    context.fillStyle = "red";
+    context.beginPath();
+    context.arc(food.x * w, food.y * w, w/3.5, 0, 2 * Math.PI);
+    context.closePath();
+    context.fill();
+}
+appear();
+
+// the function to intialize the food coordinates
+function initialFood() {
+    foodx = Math.ceil(Math.random() * 25 + 1);
+    foody = Math.ceil(Math.random() * 25 + 1);
+    // if the snake's coordinates are the same as the food's,
+    // initialize the food coordiates again
+    for (var i = 0; i < snake.length; i++) {
+        if (snake[i].x == foodx && snake[i].y == foody) {
+            initialFood();
+        }
+    }
+}
+
+
+// check the keyboard events
+document.onkeydown = function(k) {
+    // press "down-arrow", keyCode = 40 
+    // press "right-arrow", keyCode = 39
+    // press "left-arrow", keyCode = 37
+    // press "up-arrow", keyCode = 38
+    var keyCode = k.keyCode;
+    if (keyCode >= 37 && keyCode <= 40) {
+        snakeMove(keyCode);
+    }
+}
+
+
+// the function to manipulate the direction of snake's movement according to the keyboard
+function snakeMove(keyCode) {
+	// create a new array for the updated snake
+    var newSnake = [];
+    // create a new cell to update the snake head's position and moving direction
+    var newCell = new cell(head.x, head.y, head.d); 
+    // input the values of the new snake 
+    for (var i = 1; i < snake.length; i++) {
+        newSnake[i - 1] = snake[i];
+    }
+    // update the new snake's head
+    newSnake[snake.length - 1] = newCell;
+    // update the direction corresponding to the keycode
+    newCell.d = keyCode;
+    // manipulate the head's coordinates corresponding to the keycode
+    switch (keyCode) {
+        case 40:
+            newCell.y++;
+            break; // going down 
+        case 39:
+            newCell.x++;
+            break; // going right
+        case 38:
+            newCell.y--;
+            break; // going up
+        case 37:
+            newCell.x--;
+            break; // going left
+    }
+    // update the snake
+    snake = newSnake;
+    head = snake[snake.length - 1];
+    // check the death condition
+    deathCondition();
+    appear();
+}
+
+
+// the function to check the death events
+function deathCondition() {
+    // meet the boundaries
+    if (head.x >= 27 || head.y >= 27 || head.x < 0 || head.y < 0) {
+        alert("Game over! You met the boundaries!");
+        window.location.reload();
+    }
+    // eat its own tail
+    for (var i = 0; i < snake.length - 1; i++) {
+        if (head.x == snake[i].x && head.y == snake[i].y) {
+            alert("Game over! You ate your own tail!");
+            window.location.reload();
+        }
+    }
+}
+
+
+
+</script>
+
+</body>
+</html>
