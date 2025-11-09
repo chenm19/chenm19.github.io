@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <!--define the character set used and authors-->
+    <meta charset = UTF-8" />
+    <meta name="author" content="Ziang Xu, Haorui Zhang, Beicheng Huang">
+    <title>Flappy pig</title>
+
+    <!--define style information for body and canvas-->
+      <style>
+        body {
+          margin:0px;
+          padding:0px;
+          text-align:center;
+          background: #8DA077 no-repeat;
+        }
+
+        canvas{
+            outline:0;
+            border:5px solid #000;
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+      </style>
+  </head>
+
+  <body>
+  <!--here is the title-->
+	<h1>Flappy pig</h1>
+  <!--here is the bold subtitle-->
+    <b style="font-family:arial;color:#194568;font-size:20px;"> By Ziang Xu, Haorui Zhang, and Beicheng Huang</b><br><br>
+
+
+    <div id="header" style="background-color:#BABAAB;">
+
+      <!--create a menu at the left side-->
+      <div id="menu" style="background-color:#ECD59F;height:521px;width:300px;float:left;">
+        <br>
+        <!--Defines sound content and adds audio controls-->
+        <audio controls>
+          <source src="sound/bgm.mp3" type="audio/mpeg">
+        </audio>
+
+        <!--images on the menu are imported here-->
+        <img src="img/peppa-pig.png" width="264" height="150" />
+        <br />
+        <br />
+        <b>Using your mouse to control the movement!</b><br>
+        <img src="img/mouse.png" width="200" height="140" />
+        <br />
+        <b style="font-family:arial;color:#c8431e;font-size:45px;">←      →</b><br>
+
+      </div>
+
+
+      <div>
+        <img src="img/george.png" width="130" height="195" />
+        <!--the central canvas is created here-->
+        <canvas id='c'></canvas>
+        <img src="img/pink peppa.png" width="130" height="195" />
+      </div>
+
+      <!--Creating the footer here-->
+      <div id="footer" style="background-color:#8ac8b7;clear:both;text-align:center;">
+        <b>Not for commercial use</b><br></div>
+
+    </div>
+
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="game.js"></script>
+
+  </body>
+</html>
