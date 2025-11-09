@@ -319,7 +319,8 @@
 
       const saved = localStorage.getItem('theme');
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initial = saved || (systemPrefersDark ? 'dark' : 'light');
+      // const initial = saved || (systemPrefersDark ? 'dark' : 'light');
+       const initial = saved || 'dark';
       setTheme(initial);
 
       btn.addEventListener('click', () => {
