@@ -258,7 +258,7 @@ a:hover { text-decoration: underline; }
   display: block;
 }
 
-.game-list {
+/* .game-list {
   list-style: none;
   padding-left: 0;
   display: grid;
@@ -279,7 +279,7 @@ a:hover { text-decoration: underline; }
 
 .game-list li:hover {
   transform: translateY(-3px);
-}
+} */
 
 .game-grid li:hover {
   transform: translateY(-4px);
@@ -300,6 +300,25 @@ a:hover { text-decoration: underline; }
   list-style: none;
   cursor: pointer;
   font-weight: 700;
-  color: var(--brand); 
+  /* color: var(--brand); */
   outline: none;
 }
+.game-grid {
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.game-grid li {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform .15s ease;
+}
+.game-grid li:hover { transform: translateY(-1px); }
