@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start to Play the Puzzle game</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script type="text/javascript" src="scripts.js"></script>
+</head>
+
+<body>
+
+<!-- the biggest div-->
+<div id="container">
+    <!-- the game div, in which players can play the game-->
+    <div id="game">
+        <div id="d1" onclick="move(1)"><img src="./img/p1.jpg"></div>
+        <div id="d2" onclick="move(2)"><img src="./img/p2.jpg"></div>
+        <div id="d3" onclick="move(3)"><img src="./img/p3.jpg"></div>
+        <div id="d4" onclick="move(4)"><img src="./img/p4.jpg"></div>
+        <div id="d5" onclick="move(5)"><img src="./img/p5.jpg"></div>
+        <div id="d6" onclick="move(6)"><img src="./img/p6.jpg"></div>
+        <div id="d7" onclick="move(7)"><img src="./img/p7.jpg"></div>
+        <div id="d8" onclick="move(8)"><img src="./img/p8.jpg"></div>
+    </div>
+    <!-- showing basic information about the game-->
+    <div id="basicInfo">
+        <h1>Puzzle Game!</h1>
+        <p>
+            Instructions: Click on the pictures to move them, and try to get the image showing below! Click on the "reset" button to restart the game.<img src="./img/puzzle-pic.jpg">
+        </p>
+    </div>
+    <!-- the control panel div. Player can reset the game-->
+    <div id="control">
+        <p>
+            <rowspan id="reset" onclick="reset()">Reset</rowspan>
+        </p>
+    </div>
+
+
+
+</div>
+</body>
+</html>
