@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+canvas {
+    margin: 20px;
+    border: 2px solid #000;
+    background:url(qipan.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+#box {
+    display: inline-block;
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 100px;
+}
+span {
+    font: 50px "Arial";
+    display: inline-block;
+    height: 50px;
+}
+input {
+    margin-top: 50px;
+    display: block;
+    width: 100px;
+    height: 50px;
+    font: 23px "Arial";
+    color: #fff;
+    background-color: #0099cc;
+}
+background {
+    background-image: 'drawing.jpg';
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
