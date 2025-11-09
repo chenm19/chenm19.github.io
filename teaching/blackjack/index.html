@@ -1,0 +1,113 @@
+<!--
+@file index.html
+@brief This file implements html to design the basic layout of the blackjack webpage
+We use buttons, div, and img elements to create this layout
+@author Matthew Sparacio, Joe McCalmon, Liz Murphy, Rachel Mount
+@date 12/6/19
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel = "stylesheet" type = "text/css" href = "style.css" />
+</head>
+<body>
+
+<div id = "Bets" class = "Bets">
+
+</div>
+
+<div id = "playGameAppear" class = "playGame">
+    <button class = "playGameB" onclick = "playGame()">Play Game</button>
+</div>
+
+<div id = "buttons" class = "buttons">
+    <!-- The buttons are created dynamically within the javascript code-->
+</div>
+
+<div id = "dealerCardImages" class = "dealerCards">
+    <!-- These are also created and removed dynamically, along with the playerCardImages-->
+</div>
+
+
+
+<div id = "values" class = "values" >
+    <div id = "valuePlayer" class = "playerValue"></div>
+    <div id = "valueDealer" class = "dealerValue"></div>
+    <div id = "roundBet" class = "bet">
+        <p id = "bet" >Round Bet: $0</p>
+    </div>
+    <div id = "playerMoney" class = "playerMoney">Player money: $5000</div>
+    <div id = "dealerMoney" class = "dealerMoney">Dealer money: $5000</div>
+
+    <div id = "placeBets" class = "placeBets">Place Your Bets!</div>
+</div>
+
+<div id = "playerCardImages" class = "playerCards">
+
+</div>
+
+
+
+<div id = "winnerText" class = "roundWinner">
+    <b id = "playerWin" class = "playerWin">Player Wins!</b>
+    <b id = "dealerWin" class = "dealerWin">Dealer Wins!</b>
+    <b id = "playerWinGame" class = "playerWinGame">Player Wins the Game!</b>
+    <b id = "dealerWinGame" class = "dealerWinGame">Dealer Wins the Game!</b>
+</div>
+
+<!-- The below creates the betting chips, with an invisible button on top of each image for betting -->
+<div id = "chips" class = "chips">
+    <div id = "black" class = "blackChip">
+        <img src = "cardImages/blackChip.png" alt = "black chip" onclick = incBetBlack()>
+        <p class = "blackP">$500</p>
+        <button class = "blackButton"></button>
+    </div>
+    <div id = "blue" class = "blueChip">
+        <img src = "cardImages/blueChip.png" alt = "blue chip" onclick = incBetBlue()>
+        <p class = "blueP">$100</p>
+        <button class = "blueButton"></button>
+    </div>
+    <div id = "white" class = "whiteChip">
+        <img src = "cardImages/whiteChip.png" alt = "white chip" onclick = incBetWhite()>
+        <p class = "whiteP">$50</p>
+        <button class = "whiteButton"></button>
+    </div>
+</div>
+
+
+<div class = "rules" >
+    <h1>Rules:</h1>
+    <p>
+        Place your bet by clicking the chips before choosing either play game or new round. <br><br>
+        The cards are dealt, both face up to the player, and with one card face down to the dealer. <br><br>
+        The goal of BlackJack is to have a higher card "value" than the dealer, without going over 21. <br><br>
+        Your total value is the sum of the value of the cards in your hand. <br><br>
+        All face cards are worth 10, while Ace has a value of either 11 or 1 depending on what is optimal. <br><br>
+        You can choose "hit" to draw another card, or "stand" to end your turn. <br><br>
+        The game ends when the player either chooses "stand", the player busts, or the player accumulates 5 cards without exceeding 21. <br><br>
+        If the player stands, the dealer draws until they reach 17 and a value above the player. Should the dealer bust, the player wins.<br><br>
+        If the player busts (exceeds 21), they lose. <br><br>
+        If the player accumulates 5 cards in their hand, they win. <br><br>
+    </p>
+</div>
+
+
+
+<script src = "Blackjack.js">
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
