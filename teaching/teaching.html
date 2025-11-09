@@ -16,21 +16,25 @@
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
     }
-    li {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease;
-    }
+
     li:hover { transform: translateY(-3px); }
     a {
       color: var(--brand);
       text-decoration: none;
       font-weight: 600;
     }
+
+li {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px; /* space between each item */
+  text-align: left;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
   </style>
 </head>
 <body>
@@ -44,7 +48,6 @@
     <li><a href="Waldo/index.html">Find Waldo</a></li>
     <li><a href="FlipFlop/index.html">FlipFlop</a></li>
     <li><a href="GoBang/index.html">GoBang</a></li>
-    <li><a href="connectfour/index.html">Connect Four</a></li>
     <li><a href="puzzle/index.html">Puzzle Game</a></li>
     <li><a href="2048/index.html">2048</a></li>
     <li><a href="battleship/index.html">Battleship</a></li>
