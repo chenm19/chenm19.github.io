@@ -1,0 +1,63 @@
+<!-- index.html
+     This html implements external javascript and css files to initiate gameplay.
+     Ally Ashcraft and Evan Osterberg
+     04/29/2020
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Battleship</title>
+    <link rel="stylesheet" type="text/css" href="style.css"> <!--insertion of external css file-->
+</head>
+<body>
+<div id="board">
+    <div id="msgPrintLocation"></div>
+    <table>
+        <tr> <!--row A-->
+            <td id="00"></td><td id="01"></td><td id="02"></td><td id="03"></td> <!--cells within row-->
+            <td id="04"></td><td id="05"></td><td id="06"></td>
+        </tr>
+        <tr> <!--row B-->
+            <td id="10"></td><td id="11"></td><td id="12"></td><td id="13"></td>
+            <td id="14"></td><td id="15"></td><td id="16"></td>
+        </tr>
+        <tr> <!--row C-->
+            <td id="20"></td><td id="21"></td><td id="22"></td><td id="23"></td>
+            <td id="24"></td><td id="25"></td><td id="26"></td>
+        </tr>
+        <tr> <!--row D-->
+            <td id="30"></td><td id="31"></td><td id="32"></td><td id="33"></td>
+            <td id="34"></td><td id="35"></td><td id="36"></td>
+        </tr>
+        <tr> <!--row E-->
+            <td id="40"></td><td id="41"></td><td id="42"></td><td id="43"></td>
+            <td id="44"></td><td id="45"></td><td id="46"></td>
+        </tr>
+        <tr> <!--row F-->
+            <td id="50"></td><td id="51"></td><td id="52"></td><td id="53"></td>
+            <td id="54"></td><td id="55"></td><td id="56"></td>
+        </tr>
+        <tr> <!--row G-->
+            <td id="60"></td><td id="61"></td><td id="62"></td><td id="63"></td>
+            <td id="64"></td><td id="65"></td><td id="66"></td>
+        </tr>
+    </table>
+    <form>
+        <input type="text" id="guessInput" placeholder="A0" style="font-family:Goudy Old Style">
+        <input type="button" id="fireButton" value="Fire!" style="font-family:Goudy Old Style">
+    </form>
+</div>
+
+<br> <br> <br> <br> <br> <br> <!-- give space between message pop-up and instructions-->
+<p><!--instructions info box-->
+    <span>Welcome to Battleship!</span>
+    <br><br>Your mission is to sink all three battleships, all of size three length, scattered in the vast ocean grid!
+    <br><br>Enter your guess into the form cell (capital letter then number ex. G6) then click fire to launch your attack.
+    The called grid location will show a miss or a hit graphic, along with a corresponding message at the bottom of the board.
+    You will be commended for your success once you sink all three battleships!
+    <br><br>Good luck!</p>
+<br><br><br>
+<script src="script.js"></script> <!--insertion of external javascript file-->
+</body>
+</html>

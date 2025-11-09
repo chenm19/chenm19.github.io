@@ -1,0 +1,77 @@
+/*
+ * style.css
+ * This css implements different selector types to add stylistic elements to the html.
+ * Ally Ashcraft and Evan Osterberg
+ * 04/29/2020
+ */
+body {
+    background: url("img/2kpalms.jpg") no-repeat;
+}
+div#board { /*positioning of game grid*/
+    position: relative;
+    width: 1024px;
+    height: 863px;
+    margin: auto;
+    background: url("img/squareGrid.jpg");
+}
+div#msgPrintLocation { /*styles for pop-up message area that corresponds to grid actions (hit and miss)*/
+    position: absolute;
+    top: 900px;
+    left: 400px;
+    color: black;
+    font-size:30px;
+    background-color:#1CB2F7;
+    font-family:"Goudy Old Style";
+
+    border-color:#c7f6ff;
+    border-style:dotted;
+    border-width:2px;
+}
+table { /*sizing of table - matches grid graphic*/
+    position: absolute;
+    left: 141px;
+    top: 27px;
+    border-spacing: 5px;
+}
+td {
+    width: 100px;
+    height: 100px;
+}
+form input{ /*location of form*/
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    padding: 2px;
+    background-color: #1CB2F7;
+}
+form input { /*styling of form*/
+    background-color: #c7f6ff;
+    border-color: #c7f6ff;
+    font-size: 1em;
+}
+.hit { /*hit graphic*/
+    background: url("img/hitRE7.png") no-repeat center center;
+}
+.miss { /*miss graphic*/
+    background: url("img/missRE1.png") no-repeat center center;
+}
+p{ /*style elements related to instruction box*/
+    width: 600px;
+    padding: 20px;
+    margin: auto;
+    text-align: center;
+    color: black;
+    font-size:25px;
+    background-color:#1CB2F7;
+    border-color:#c7f6ff;
+    border-style:solid;
+    border-width:10px;
+    font-family:"Goudy Old Style";
+}
+span{ /*special style elements for instructions title*/
+    font-size:45px;
+    font-weight:bold;
+    border-style:dotted;
+    border-color:#c7f6ff;
+    padding:10px;
+}
