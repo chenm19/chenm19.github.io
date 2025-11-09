@@ -1,0 +1,51 @@
+<html>
+<head>
+	<title>Where's Waldo in the US?</title>
+ 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"> </script>
+  
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="style.css" />
+	
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+
+  <h1> Where's Waldo?</h1>
+
+  <div id='map'></div>
+
+  <p class='game-rules'>
+    <br>
+      1. Click on a blue state to locate Waldo
+    <br>
+    <br>
+      2. If Waldo is not in that state it will turn red
+    <br>
+    <br>
+      3. Continue clicking until the timer has ended
+    <br>
+    <br>
+    4. If you click on the correct state Waldo is in it will turn green
+    <br>
+    <br>
+      5. GOOD LUCK!
+  </p>
+
+<p id= 'timer' class= 'timer'>TIMER: 15</p>
+<button  id='restartgame' class= 'button button-hover'>Restart Game</button>
+<button   class= 'button2 button-hover' onclick="document.getElementById('timer').innerHTML = ('TIMER: 15');">Reset Timer</button>
+<button   class= 'button3 button-hover' onclick="clock()">Start Timer</button>
+
+</body>
+
+<script src="us-states.js"></script>
+<script src="script.js"></script>
+
+
+</html>

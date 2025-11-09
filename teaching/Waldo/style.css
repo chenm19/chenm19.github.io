@@ -1,0 +1,110 @@
+
+html, body {
+    height: 100%;
+    margin: 1;
+    background-color:burlywood;
+}
+
+html, h1 {
+    font-size: 40px;
+    text-align: center;
+    color: #338DFF;
+    margin-top: 6px;
+}
+
+html, h2 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.button {
+    background-color: #338DFF;
+    color: white;
+    padding: 20px 40px;
+    text-align: center;
+    display: inline-block;
+    font-size: 25px;
+    margin: 10px 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 370px;
+    top: 550px;
+    
+}
+
+.button2 {
+    background-color: #338DFF;
+    color: white;
+    padding: 20px 40px;
+    text-align: center;
+    display: inline-block;
+    font-size: 25px;
+    margin: 10px 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 100px;
+    top: 550px;
+    
+}
+
+.button3 {
+    background-color: #338DFF;
+    color: white;
+    padding: 20px 40px;
+    text-align: center;
+    display: inline-block;
+    font-size: 25px;
+    margin: 10px 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 250px;
+    top: 650px;
+    
+}
+
+.timer {
+    font-size: 30px;
+    position: absolute; 
+    right: 250px;
+    background-color: #338DFF;
+    color: white;
+    width: 200px;;
+    height: 40px;
+    top: 100px;
+
+
+
+}
+
+.game-rules {
+    border-style: solid;
+    border: 10px;
+    color: white;
+    background-color: #338DFF;
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    margin-left: 100px;
+    margin-right: 100px;
+    right: 5px;
+    top: 200px;
+    text-align: center;
+    
+}
+
+.button-hover:hover {
+    box-shadow: 0 10px 10px 0 white,0 10px 10px 0 white;
+  }
+
+#map {
+    width: 600px;
+    height: 400px;
+}
+
+
+#map { width: 800px; height: 800px; }
+
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+
+
+
