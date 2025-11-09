@@ -102,7 +102,7 @@
             Predict Alzheimer’s disease onset and progression by combining neuroimaging, omics,
             and clinical features with deep learning algorithms.
           </p>
-          <a class="card-link" href="projects/AD-prediction.html">Open project →</a>
+          <a class="card-link" href="projects/disease-prediction.html">Open project →</a>
         </article>
 
         <article class="card">
@@ -117,8 +117,7 @@
         <article class="card">
           <h4>MAMBA Brain Fingerprinting</h4>
           <p>
-          Develop <strong>MAMBAxBrain</strong> framework to integrate Mamba with functional connectivity analysis 
-            for multi-task fMRI modeling, including brain fingerprinting, cognitive decoding, reaction-time prediction, and schizophrenia diagnosis. </p>
+          Develop <strong>MAMBAxBrain</strong> framework to integrate Mamba with functional connectivity analysis for multi-task fMRI modeling, including brain fingerprinting, cognitive decoding, reaction-time prediction, and schizophrenia diagnosis. </p>
           <a class="card-link" href="projects/ai-neuroimaging.html">Learn more →</a>
         </article>
 
@@ -184,16 +183,37 @@
 
     <section id="teaching" class="section">
       <h3 class="section-title">Teaching</h3>
-      <!-- <ul class="2019-2025"> -->
-        <ul class="people">
-        <li>CSC 111 Introduction to Computer Science  <a class="button" href="teaching/teaching.html">(View undergraduate-developed games→)</a>
-</li>
+      <ul class="people">
+        <li class="course">
+          <details>
+            <summary><strong>CSC 111 Introduction to Computer Science (Click to View Undergraduate Course Projects)</strong></summary>
+            <div class="course-content">
+              <h4>Explore interactive games developed by undergraduate student</h4>
+              <ul class="game-grid">
+                <li><a href="teaching/blackjack/index.html">Blackjack</a></li>
+                <li><a href="teaching/RockPaperScissor/index.html">Rock Paper Scissors</a></li>
+                <li><a href="teaching/Wakesweeper/index.html">Wakesweeper</a></li>
+                <li><a href="teaching/Waldo/index.html">Find Waldo</a></li>
+                <li><a href="teaching/GoBang/index.html">GoBang</a></li>
+                <li><a href="teaching/puzzle/index.html">Puzzle Game</a></li>
+                <li><a href="teaching/2048/index.html">2048</a></li>
+                <li><a href="teaching/battleship/index.html">Battleship</a></li>
+                <li><a href="teaching/snake/index.html">Snake</a></li>
+                <li><a href="teaching/mementopuzzle/index.html">Memento Puzzle</a></li>
+                <li><a href="teaching/flappypig/index.html">Flappy Pig</a></li>
+              </ul>
+            </div>
+          </details>
+        </li>
+
+
         <li>CSC 201 Data Structure and Algorithms</li>
         <li>CSC 387/687 Computational Systems Biology</li>
         <li>CSC 790 Advanced Topics: AI for Health</li>
         <li>CSC 790 Advanced Topics: Science-Guided Machine Learning</li>
       </ul>
     </section>
+
 
     <section id="publications" class="section">
       <h3 class="section-title">Selected Publications</h3>
@@ -320,8 +340,7 @@
 
       const saved = localStorage.getItem('theme');
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      // const initial = saved || (systemPrefersDark ? 'dark' : 'light');
-       const initial = saved || 'dark';
+      const initial = saved || (systemPrefersDark ? 'dark' : 'light');
       setTheme(initial);
 
       btn.addEventListener('click', () => {
