@@ -9,7 +9,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
+  <header class="site-header banner">
     <div class="container header-inner">
       <div class="brand">
         <h1 class="site-title">AI & Computational Biology Lab</h1>
@@ -17,69 +17,87 @@
       </div>
       <nav class="nav">
         <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
+        <a href="#activity">Activity</a>
+        <a href="#teaching">Teaching</a>
         <a href="#publications">Publications</a>
         <a href="#team">Team</a>
-        <a href="#contact">Contact</a>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" aria-pressed="false">
+          <span class="toggle-icon" aria-hidden="true">🌙</span>
+        </button>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        <h2>AI for Health & Biology</h2>
+<section class="hero">
+  <div class="container hero-inner">
+
+     <!-- Photo + Contact block -->
+    <div class="hero-photo">
+      <img src="images/MChen.jpg" alt="Dr. Minghan Chen portrait" />
+      <!-- <div class="hero-contact">
         <p>
-          We build deep learning systems to advance disease prediction and
-          understand various biological systems.
+          Email: chenm@wfu.edu</a><br>
+          Office: Manchester 242<br>
+          Phone: 336-758-3732
         </p>
-        <div class="cta-row">
-          <a class="button" href="#projects">Explore Projects</a>
-          <a class="button ghost" href="#contact">Join the Lab</a>
-        </div>
-      </div>
-      <div class="hero-card">
-        <div class="stat">
-          <span class="stat-number">4</span>
-          <span class="stat-label">Active projects</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">AI</span>
-          <span class="stat-label">for biomedicine</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">AD</span>
-          <span class="stat-label">Alzheimer's focus</span>
-        </div>
-      </div>
+      </div> -->
     </div>
-  </section>
+
+    <div class="hero-text">
+      <p>
+        Dr. Minghan Chen is an Associate Professor of Computer Science at Wake Forest University. 
+        Her research focuses on science-guided machine learning and AI for health and biomedical applications. 
+        She welcomes interdisciplinary collaborations and is recruiting motivated students in computational biology and machine learning. 
+        Interested applicants should email a brief background statement, CV, and transcripts.
+      </p>
+      <!-- <div class="cta-row">
+        <a class="button" href="#projects">Explore Projects</a>
+        <a class="button ghost" href="#tutorial">Self-Learning Tutorials</a>
+      </div> -->
+    </div>
+
+   
+    <div class="hero-card">
+    <div class="stat">
+      <span class="stat-number">Contact</span>
+      <span class="stat-label">Email: chenm@wfu.edu</a><br>
+          Office: Manchester 242<br>
+          Phone: 336-758-3732</span>
+    </div>
+  </div>
+</section>
+
+
+
 
   <main id="main" class="container">
     <section id="research" class="section">
       <h3 class="section-title">Research Overview</h3>
       <p>
-        Our group develops robust machine learning and statistical methods to connect multi-modal biomedical data
-        (omics, imaging, EHR) with clinical outcomes. Current directions include: disease trajectory modeling,
-        multi-omics integration, foundation models for biomedical signals, and trustworthy AI for healthcare.
+        Our group develops robust machine learning and statistical methods to connect multi‑modal biomedical data
+        (omics, imaging) with clinical outcomes. Current directions include: disease trajectory modeling,
+        multi‑omics integration, foundation models for biomedical systems, and trustworthy AI for healthcare.
       </p>
       <ul class="pill-list">
         <li>Deep Learning</li>
         <li>AI Surrogate</li>
         <li>Systems Biology</li>
-        <li>Neuroimaging + Multi-omics Data</li>
+        <li>Multi-Modal Data</li>
       </ul>
     </section>
+
+
 
     <section id="projects" class="section">
       <div class="section-head">
         <h3 class="section-title">Featured Projects</h3>
-        <a class="see-all" href="#contact">Seeking collaborators →</a>
+        <a class="button" href="projects/disease-prediction.html">Self-Learning Tutorials →</a>
       </div>
       <div class="grid cards">
         <article class="card">
-          <div class="card-badge">Undergraduate-Led</div>
-          <h4>Alzheimer's Disease Prediction with Multi-Modal Data</h4>
+          <div class="card-badge"  href="projects/disease-prediction.html">Undergraduate-Led</div>
+          <h4> Multi‑Modal Data Integration</h4>
           <p>
             Predict Alzheimer’s disease onset and progression by combining neuroimaging, omics,
             and clinical features with deep learning algorithms.
@@ -88,69 +106,236 @@
         </article>
 
         <article class="card">
-          <h4>Brain Neural Operator for Tau Transport Model</h4>
+          <h4> Graph Neural Operator</h4>
           <p>
-            Predict tau transport over the brain using a new brain neural operator.
+          Design graph neural operators to model tau transport across brain 
+          and forecast tau spatio-temporal dynamics under different seeding conditions and biophysical parameters.
           </p>
-          <a class="card-link" href="projects/tau_model/tau_transport.html">Learn more →</a>
+          <a class="card-link" href="projects/tau_model/tau_transport.html">Explore the Tool →</a>
         </article>
 
         <article class="card">
-          <h4>AI Surrogate for Systems Biology Models</h4>
+          <h4>MAMBA Brain Fingerprinting</h4>
           <p>
-            Design generative AI surrogates to predict various dynamics of biological systems.
-          </p>
+          Develop <strong>MAMBAxBrain</strong> framework to integrate Mamba with functional connectivity analysis for multi-task fMRI modeling, including brain fingerprinting, cognitive decoding, reaction-time prediction, and schizophrenia diagnosis. </p>
           <a class="card-link" href="projects/ai-neuroimaging.html">Learn more →</a>
         </article>
 
         <article class="card">
-          <div class="card-badge">New</div>
-          <h4>Generative Models for Protein Design</h4>
+          <h4>AI Surrogate for Systems Biology</h4>
           <p>
-            Explore how generative AI can design and optimize novel protein structures,
-            accelerating drug discovery and synthetic biology innovations.
+          We build AI-based surrogate models to accelerate complex systems biology simulations. 
+          These surrogates reduce computational cost while maintaining predictive accuracy 
+          for pathway and regulatory network analysis. 
           </p>
-          <a class="card-link" href="projects/protein-design.html">Learn more →</a>
+          <a class="card-link" href="projects/ai-neuroimaging.html">TBA →</a>
         </article>
       </div>
+    </section>
+
+
+    <section id="activity" class="section">
+      <h3 class="section-title">Research Activities</h3>
+      <p>
+        Highlights from our students’ research, presentations, and summer workshops.
+      </p>
+
+      <!-- Presentations Row -->
+      <div class="gallery-row">
+        <h4>Student Presentations</h4>
+        <div class="gallery">
+          <figure>
+            <img src="images/Oral.jpg" alt="Jason giving presentation at AAAI'25" />
+            <figcaption>Jason giving presentation at AAAI'25</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Jason.jpg" alt="Undergraduate presenting poster" />
+            <figcaption>Undergraduate presenting poster</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Jingwen.png" alt="Jingwen got BCB'22 Best Poster Award" />
+            <figcaption>Jingwen got BCB'22 Best Poster Award</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Workshop -->
+      <div class="gallery-row">
+        <h4>Summer Workshops Organizer</h4>
+        <div class="gallery">
+          <figure>
+            <img src="images/workshop1.png" alt="workshop2024" />
+            <figcaption>Deep Learning and Applications (June, 2024)</figcaption>
+          </figure>
+          <figure>
+            <img src="images/workshop2.png" alt="workshop2024" />
+            <figcaption>Virtual Deep Learning Bootcamp (June, 2023)</figcaption>
+          </figure>
+          <figure>
+            <img src="images/workshop3.png" alt="workshop2022" />
+            <figcaption>Virtual Deep Learning Bootcamp (May, 2022)</figcaption>
+          </figure>
+        </div>
+      </div>
+
+    </section>
+
+
+    <section id="teaching" class="section">
+      <h3 class="section-title">Teaching</h3>
+      <!-- <ul class="2019-2025"> -->
+        <ul class="people">
+        <li>CSC 111 Introduction to Computer Science (Click for details on course projects developed by undergraduates.)</li>
+        <li>CSC 201 Data Structure and Algorithms</li>
+        <li>CSC 387/687 Computational Systems Biology</li>
+        <li>CSC 790 Advanced Topics: AI for Health</li>
+        <li>CSC 790 Advanced Topics: Science-Guided Machine Learning</li>
+      </ul>
     </section>
 
     <section id="publications" class="section">
       <h3 class="section-title">Selected Publications</h3>
       <ol class="pub-list">
+
+        <!-- 2025 -->
         <li>
-          Chen, M. et al. (2025). <em>Deep Learning for Multi-Modal Alzheimer’s Disease Classification</em>.
-          <span class="pub-venue">Bioinformatics</span>.
+          Chen, C., Xu, E., Yang, D., Yan, C., Wei, T., Chen, H., Wei, Y., & <strong>Chen, M.</strong> (2025).
+          <em> Catastrophic Forgetting in KANs.</em>
+          <span class="pub-venue">Proceedings of AAAI Conference on Artificial Intelligence</span>.
+        </li>
+      
+        <li>
+          Chen, C., Xu, E., Yang, D., Yan, C., Wei, T., Chen, H., Wei, Y., & <strong>Chen, M.</strong> (2025).
+          <em>Chemical environment adaptive learning for optical band gap prediction of doped graphitic carbon nitride nanosheets.</em>
+          <span class="pub-venue">Neural Computing and Applications</span>.
         </li>
         <li>
-          Chen, M., Smith, J., Lee, A. (2024). <em>Integrative AI Models for Neurodegeneration</em>.
-          <span class="pub-venue">Nature Computational Science</span>.
+          Xu, C., Xu, E., Xiao, Y., Yang, D., Wu, G., & <strong>Chen, M.</strong> (2025).
+          <em>A multiscale model to explain the spatiotemporal progression of amyloid beta and tau pathology in Alzheimer's disease.</em>
+          <span class="pub-venue">International Journal of Biological Macromolecules</span>.
+        </li>
+        <li>
+          Rao, H., Gu, Y., Zhang, J.Z., Yu, G., Cao, Y., & <strong>Chen, M.</strong> (2025).
+          <em>Hierarchical Gradient-Based Genetic Sampling for Accurate Prediction of Biological Oscillations.</em>
+          <span class="pub-venue">Proceedings of AAAI Conference on Artificial Intelligence</span>.
+        </li>
+        <li>
+          Liu, S., <strong>Chen, M.</strong>, Cao, X., Sheng, Z., Sun, J., Zhan, J., Wang, S., Wu, G., & Yang, D. (2025).
+          <em>A Joint Multi-Graph Learning Framework for Dynamic Functional Connectivity Network Estimation Across Multiple Time Scales.</em>
+          <span class="pub-venue">IEEE ISBI 2025</span>.
+        </li>
+
+        <!-- 2024 -->
+        <li>
+          Yang, D., Shen, H., <strong>Chen, M.</strong>, Wang, S., Chen, J., Cai, H., Chen, X., Wu, G., & Zhu, W. (2024).
+          <em>A novel spatio-temporal hub identification in brain networks by learning dynamic graph embedding on Grassmannian manifolds.</em>
+          <span class="pub-venue">IEEE Transactions on Medical Imaging</span>.
+        </li>
+        <li>
+          Zhu, W., Du, Z., Xu, Z., Yang, D., <strong>Chen, M.</strong>, & Song, Q. (2024).
+          <em>SCRN: Single-cell Gene Regulatory Network Identification in Alzheimer’s Disease.</em>
+          <span class="pub-venue">IEEE/ACM Transactions on Computational Biology and Bioinformatics</span>.
+        </li>
+
+        <!-- 2023 -->
+        <li>
+          Yang, D., Shen, H., <strong>Chen, M.</strong>, Xue, Y., Wang, S., Wu, G., & Zhu, W. (2023).
+          <em>Spatiotemporal Hub Identification in Brain Network by Learning Dynamic Graph Embedding on Grassmannian Manifold.</em>
+          <span class="pub-venue">MICCAI (Medical Image Computing and Computer-Assisted Intervention)</span>.
+        </li>
+
+        <!-- 2022 -->
+        <li>
+          <strong>Chen, M.</strong>, Xu, C., Xu, Z., He, W., Zhang, H., Su, J., & Song, Q. (2022).
+          <em>Uncovering the dynamic effects of DEX treatment on lung cancer by integrating bioinformatic inference and multiscale modeling of scRNA-seq and proteomics data.</em>
+          <span class="pub-venue">Computers in Biology and Medicine</span>.
+        </li>
+        <li>
+          Xu, C., Hollis, H., Dai, M., Yao, X., Watson, L.T., Cao, Y., & <strong>Chen, M.</strong> (2022).
+          <em>Modeling the temporal dynamics of master regulators and CtrA proteolysis in <i>Caulobacter crescentus</i> cell cycle.</em>
+          <span class="pub-venue">PLoS Computational Biology</span>.
+        </li>
+
+        <!-- 2020 -->
+        <li>
+          <strong>Chen, M.</strong>, Ahmadian, M., Watson, L.T., & Cao, Y. (2020).
+          <em>Finding acceptable parameter regions of stochastic Hill functions for multisite phosphorylation mechanism.</em>
+          <span class="pub-venue">Journal of Chemical Physics</span>.
         </li>
       </ol>
-      <p><a class="inline-link" href="#">Full list coming soon</a></p>
+
     </section>
+
+
 
     <section id="team" class="section">
       <h3 class="section-title">Team</h3>
-      <ul class="people">
-        <li><strong>Dr. Minghan Chen</strong> · PI</li>
-        <li><strong>Student Lead:</strong> TBD · Disease Prediction Project</li>
-      </ul>
-    </section>
+      <h4>Current Group Members</h4>
+      
+        <li>Urmi Saha</li>
+        <li>Jason Zhang</li>
+        <li>Grayson Gooden</li>
+        <li>Ananya Rajgaria</li>
+        <li>Fiona Zhang</li>
+     
 
-    <section id="contact" class="section">
-      <h3 class="section-title">Contact</h3>
+    <h4>Former Students</h4>
       <p>
-        Department of Computer Science, Wake Forest University (Winston-Salem, NC)<br>
-        <a href="mailto:chenm19@wfu.edu">chenm19@wfu.edu</a><br>
+        Yang Xiao, 2025 (Computer Science, University of Pennsylvania)<br>
+        Johnson Wang, 2024 (Computational Biology, Harvard University)<br>
+        Ruiwen Yang, 2024 (Data Science, University of Pennsylvania)<br>
+        Selina Zhang, 2023 (Computer Science, Harvard University)<br>
+        Ziang Xu, 2023 (Computer Science, Columbia University)<br>
+        Zhanyang Sun, 2023 (Data Science, University of Southern California)<br>
+        Enze Xu, 2023 (Computer Science, William & Mary College)<br>
+        Michelle Dai, 2022 (Computational Biology, Harvard University)<br>
+        Patrick Fan, 2022 (Computational Finance, Carnegie Mellon University)<br>
+        Laurent Zhang, 2022 (Data Science, New York University)<br>
+        Bess Morrell, 2022 (Independent Study)<br>
+        Hao Lin, 2022 (Summer research, Duke University)<br>
+        David Ding, 2022 (Computer Science, Rice University)<br>
+        Henry Hollis, 2021 (Biomedical Engineering, Drexel University)<br>
+        Alex Wei, 2020 (Computational Biology, Harvard University)
       </p>
     </section>
+
+
+
+
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© 2025 Minghan Chen · Wake Forest University</p>
+      <p>© 2025 Minghan Chen </p>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const btn  = document.getElementById('themeToggle');
+      if (!btn) return;
+
+      const saved = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initial = saved || (systemPrefersDark ? 'dark' : 'light');
+      setTheme(initial);
+
+      btn.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+        localStorage.setItem('theme', next);
+      });
+
+      function setTheme(mode) {
+        root.setAttribute('data-theme', mode);
+        const isDark = mode === 'dark';
+        btn.setAttribute('aria-pressed', String(isDark));
+        const icon = btn.querySelector('.toggle-icon');
+        if (icon) icon.textContent = isDark ? '🌙' : '☀️';
+      }
+    })();
+  </script>
+
 </body>
 </html>
