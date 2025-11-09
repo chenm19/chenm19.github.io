@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>2048</title>
+    <link rel="stylesheet" href="styles.css"> <!--imports the .css file to the html code-->
+</head>
+<body>
+<div class="header">
+    <h2 id="win"></h2> <!--invisible line unless game is won or lost-->
+    <h1 class="title" align="center">2048 Game!</h1> <!-- descriptors for the game title, current score, and high score-->
+    <p id="score">Score: 0</p>
+    <p id="highScore">High Score: 0</p>
+    <button type="button" class="button" id="newGame" onclick="buttonClick()">New Game</button> <!-- button to start a new game-->
+    <p class="description">Use the <strong>arrow keys</strong> to slide boxes of the same value into each other. Continue this process and try to achieve the <strong>2048</strong> tile!</p>
+    <p class="authors"> Created by Will Caulkins & Annlyn Zinke</p>
+</div>
+<div class="container" align="center"> <!-- container that holds the actual game-->
+    <div id="tictactoe"></div>
+
+</div>
+<script type="text/javascript" src="script.js"></script> <!-- links the game logic to the script.js file-->
+</body>
+</html>

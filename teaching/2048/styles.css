@@ -1,0 +1,71 @@
+* { /* general guidelines for the whole page */
+    box-sizing: border-box;
+    padding: auto;
+    margin: auto;
+}
+
+body { /* Font type/size and other guidelines for the body section of the page */
+    display: flex;
+    background: #c6d8ec;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 18px;
+}
+
+.header { /* padding, alignment, centering, text color, and font size for the header */
+    padding: 60px;
+    text-align: center;
+    color: #4d6680;
+    font-size: 30px;
+}
+
+.title { /* Shadowing for the title */
+    text-shadow: 2px 2px 3px white;
+}
+
+.button { /* background color, sizing, and font descriptions for the button */
+    background-color: #4d6680;
+    border: none;
+    color: #faf8ef;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10%;
+    box-shadow: 2px 2px 10px grey;
+}
+
+.description { /* font size for the description of the game */
+    font-size: 18px;
+}
+
+.authors { /* padding and font size for the author section */
+    padding: 20px;
+    font-size: 14px;
+}
+
+.container { /* general sizing and placement guidelines for the game container */
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    min-width: 600px;
+    min-height: 600px;
+    border-radius: 2%;
+    margin: auto;
+}
+
+table { /* margin and border settings for the game table */
+    border-collapse: collapse;
+    margin: auto;
+}
+
+td { /* background, border and font descriptions for the tiles */
+    background-color: #666;
+    border: 15px solid #4d6680;
+    color: white;
+    border-radius: 5%;
+}
