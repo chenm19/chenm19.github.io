@@ -300,7 +300,7 @@ a:hover { text-decoration: underline; }
   list-style: none;
   cursor: pointer;
   font-weight: 700;
-  /* color: var(--brand); */
+  color: var(--brand);
   outline: none;
 }
 .game-grid {
