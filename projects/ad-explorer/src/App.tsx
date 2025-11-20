@@ -21,7 +21,7 @@ export default function App() {
         </div>
       </main>
       <footer className="border-t border-slate-800 py-3 text-xs text-slate-400 text-center">
-        Alzheimer&apos;s Biomarker Explorer · Wake Forest University · {new Date().getFullYear()}
+        Alzheimer's Biomarker Explorer · Wake Forest University · {new Date().getFullYear()}
       </footer>
     </div>
   )

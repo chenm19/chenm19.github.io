@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+{/* Gifs */}
+import amyloidGif from '../assets/biomarkers/amyloid.gif'
+import tauGif from '../assets/biomarkers/tau.gif'
+import neuroGif from '../assets/biomarkers/neurodegeneration.gif'
+
 type RegionId = 'frontal' | 'temporal' | 'parietal' | 'occipital' | 'hippocampus'
 type StageId = 'preclinical' | 'mild' | 'moderate' | 'severe'
 
@@ -142,14 +147,16 @@ export default function Intro() {
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div className="space-y-2">
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
-              Alzheimer&apos;s Biomarker Explorer
+              Alzheimer's Biomarker Explorer
             </h1>
             <p className="text-slate-300 text-sm md:text-base max-w-2xl">
-              This site is an interactive companion to ongoing research in Professor Chen&apos;s modeling lab, implementing{' '}
-              <span className="text-cyan-300 font-medium">agentic AI for Alzheimer&apos;s disease</span>.
-              This site is designed for a individuals of all backgrounds: open to students learning about Alzheimer&apos;s for the first
-              time, to clinicians and researchers who want navigate the complex relationships affecting brain changes, symptoms,
-              and biomarkers in an intuitive manner.
+              This site is an interactive companion to ongoing research in Professor Chen's
+              modeling lab, implementing{' '}
+              <span className="text-cyan-300 font-medium">agentic AI for Alzheimer's disease</span>.
+              This site is designed for individuals of all backgrounds: open to students learning
+              about Alzheimer's for the first time, to clinicians and researchers who want
+              to navigate the complex relationships affecting brain changes, symptoms, and
+              biomarkers in an intuitive manner.
             </p>
           </div>
           <div className="flex flex-col items-end gap-2 text-xs">
@@ -164,22 +171,30 @@ export default function Intro() {
 
         <div className="grid md:grid-cols-3 gap-3 text-[11px] md:text-xs text-slate-300">
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3">
-            <div className="font-semibold text-slate-100 mb-1">What is Alzheimer&apos;s disease?</div>
+            <div className="font-semibold text-slate-100 mb-1">
+              What is Alzheimer's disease?
+            </div>
             <p>
-              Alzheimer's is the most common cause of dementia, a general term for memory loss and other cognitive abilities serious enough to interfere with daily life. Alzheimer's disease accounts for 60-80% of dementia cases.
+              Alzheimer's is the most common cause of dementia, a general term for memory
+              loss and other cognitive abilities serious enough to interfere with daily life.
+              Alzheimer's disease accounts for 60-80% of dementia cases.
             </p>
           </div>
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3">
             <div className="font-semibold text-slate-100 mb-1">How common is it?</div>
             <p>
-                According to the Alzheimer's Association, over 7 million Americans are currently living with Alzheimer's. This disease affects approximately 1 in 9 people age 65 and older. By 2050, this number is projected to rise to nearly 13 million.
+              According to the Alzheimer's Association, over 7 million Americans are
+              currently living with Alzheimer's. This disease affects approximately 1 in 9
+              people age 65 and older. By 2050, this number is projected to rise to nearly 13
+              million.
             </p>
           </div>
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3">
             <div className="font-semibold text-slate-100 mb-1">Can it be cured?</div>
             <p>
-              Unfortunately, no cure exists. However, certain treatments have been found to slow progression for some people, helping them manage
-              symptoms, and supporting quality of life for both the person and their caregivers.
+              Unfortunately, no cure exists. However, certain treatments have been found to slow
+              progression for some people, helping them manage symptoms and supporting quality of
+              life for both the person and their caregivers.
             </p>
           </div>
         </div>
@@ -193,139 +208,235 @@ export default function Intro() {
             Explore the key brain regions affected in Alzheimer's
           </h2>
           <p className="text-[11px] text-slate-400 mb-3">
-            Hover or tap to highlight regions the brain. The panel on the right explains each area&apos;s function and how changes there can show up in everyday life.
+            Hover or tap to highlight regions of the brain. The panel on the right explains each
+            area's function and how changes there can show up in everyday life.
           </p>
           <div className="flex justify-center">
             <svg
-                viewBox="0 0 260 200"
-                className="w-full max-w-xs drop-shadow-[0_0_40px_rgba(8,47,73,0.7)]"
-                >
-                <defs>
-                    {/* Soft background gradient for the brain */}
-                    <linearGradient id="brainGradient" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#020617" />
-                    <stop offset="40%" stopColor="#020617" />
-                    <stop offset="100%" stopColor="#020617" />
-                    </linearGradient>
-                </defs>
+              viewBox="0 0 260 200"
+              className="w-full max-w-xs drop-shadow-[0_0_40px_rgba(8,47,73,0.7)]"
+            >
+              <defs>
+                {/* Soft background gradient for the brain */}
+                <linearGradient id="brainGradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#020617" />
+                  <stop offset="40%" stopColor="#020617" />
+                  <stop offset="100%" stopColor="#020617" />
+                </linearGradient>
+              </defs>
 
-                {/* Filled brain silhouette */}
-                <path
-                    d="M50 60 C 40 40, 55 20, 85 20 C 100 5, 130 5, 150 20 C 180 10, 210 25, 210 55 C 235 75, 230 115, 210 130 C 210 155, 185 180, 150 175 C 135 190, 105 190, 90 175 C 65 185, 35 165, 40 135 C 20 115, 20 80, 50 60 Z"
-                    fill="url(#brainGradient)"
-                    stroke="#020617"
-                    strokeWidth={4}
-                />
+              {/* Filled brain silhouette */}
+              <path
+                d="M50 60 C 40 40, 55 20, 85 20 C 100 5, 130 5, 150 20 C 180 10, 210 25, 210 55 C 235 75, 230 115, 210 130 C 210 155, 185 180, 150 175 C 135 190, 105 190, 90 175 C 65 185, 35 165, 40 135 C 20 115, 20 80, 50 60 Z"
+                fill="url(#brainGradient)"
+                stroke="#020617"
+                strokeWidth={4}
+              />
 
-                {/* Frontal lobe */}
-                <path
-                    d="M60 70 C 50 55, 60 35, 90 30 C 105 28, 120 35, 125 50 C 110 60, 90 70, 60 70 Z"
-                    fill={activeRegion === 'frontal' ? '#22d3ee' : 'rgba(34,211,238,0.25)'}
-                    stroke={activeRegion === 'frontal' ? '#22d3ee' : 'rgba(148,163,184,0.7)'}
-                    strokeWidth={activeRegion === 'frontal' ? 2.5 : 1.5}
-                    onMouseEnter={() => setActiveRegion('frontal')}
-                    onClick={() => setActiveRegion('frontal')}
-                    style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
-                />
+              {/* Frontal lobe */}
+              <path
+                d="M60 70 C 50 55, 60 35, 90 30 C 105 28, 120 35, 125 50 C 110 60, 90 70, 60 70 Z"
+                fill={activeRegion === 'frontal' ? '#22d3ee' : 'rgba(34,211,238,0.25)'}
+                stroke={activeRegion === 'frontal' ? '#22d3ee' : 'rgba(148,163,184,0.7)'}
+                strokeWidth={activeRegion === 'frontal' ? 2.5 : 1.5}
+                onMouseEnter={() => setActiveRegion('frontal')}
+                onClick={() => setActiveRegion('frontal')}
+                style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
+              />
 
-                {/* Temporal lobe */}
-                <path
-                    d="M80 95 C 65 95, 55 105, 55 120 C 58 135, 70 145, 90 145 C 105 143, 120 135, 125 120 C 120 105, 105 95, 80 95 Z"
-                    fill={activeRegion === 'temporal' ? '#a855f7' : 'rgba(168,85,247,0.25)'}
-                    stroke={activeRegion === 'temporal' ? '#a855f7' : 'rgba(148,163,184,0.7)'}
-                    strokeWidth={activeRegion === 'temporal' ? 2.5 : 1.5}
-                    onMouseEnter={() => setActiveRegion('temporal')}
-                    onClick={() => setActiveRegion('temporal')}
-                    style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
-                />
+              {/* Temporal lobe */}
+              <path
+                d="M80 95 C 65 95, 55 105, 55 120 C 58 135, 70 145, 90 145 C 105 143, 120 135, 125 120 C 120 105, 105 95, 80 95 Z"
+                fill={activeRegion === 'temporal' ? '#a855f7' : 'rgba(168,85,247,0.25)'}
+                stroke={activeRegion === 'temporal' ? '#a855f7' : 'rgba(148,163,184,0.7)'}
+                strokeWidth={activeRegion === 'temporal' ? 2.5 : 1.5}
+                onMouseEnter={() => setActiveRegion('temporal')}
+                onClick={() => setActiveRegion('temporal')}
+                style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
+              />
 
-                {/* Parietal lobe */}
-                <path
-                    d="M115 55 C 125 40, 145 35, 165 40 C 180 45, 190 60, 190 75 C 175 82, 160 90, 140 92 C 130 90, 120 82, 115 70 Z"
-                    fill={activeRegion === 'parietal' ? '#f97316' : 'rgba(249,115,22,0.25)'}
-                    stroke={activeRegion === 'parietal' ? '#f97316' : 'rgba(148,163,184,0.7)'}
-                    strokeWidth={activeRegion === 'parietal' ? 2.5 : 1.5}
-                    onMouseEnter={() => setActiveRegion('parietal')}
-                    onClick={() => setActiveRegion('parietal')}
-                    style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
-                />
+              {/* Parietal lobe */}
+              <path
+                d="M115 55 C 125 40, 145 35, 165 40 C 180 45, 190 60, 190 75 C 175 82, 160 90, 140 92 C 130 90, 120 82, 115 70 Z"
+                fill={activeRegion === 'parietal' ? '#f97316' : 'rgba(249,115,22,0.25)'}
+                stroke={activeRegion === 'parietal' ? '#f97316' : 'rgba(148,163,184,0.7)'}
+                strokeWidth={activeRegion === 'parietal' ? 2.5 : 1.5}
+                onMouseEnter={() => setActiveRegion('parietal')}
+                onClick={() => setActiveRegion('parietal')}
+                style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
+              />
 
-                {/* Occipital lobe */}
-                <path
-                    d="M165 85 C 185 82, 205 90, 210 105 C 212 120, 205 135, 190 140 C 175 142, 160 135, 155 122 C 158 110, 160 95, 165 85 Z"
-                    fill={activeRegion === 'occipital' ? '#4ade80' : 'rgba(74,222,128,0.25)'}
-                    stroke={activeRegion === 'occipital' ? '#4ade80' : 'rgba(148,163,184,0.7)'}
-                    strokeWidth={activeRegion === 'occipital' ? 2.5 : 1.5}
-                    onMouseEnter={() => setActiveRegion('occipital')}
-                    onClick={() => setActiveRegion('occipital')}
-                    style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
-                />
+              {/* Occipital lobe */}
+              <path
+                d="M165 85 C 185 82, 205 90, 210 105 C 212 120, 205 135, 190 140 C 175 142, 160 135, 155 122 C 158 110, 160 95, 165 85 Z"
+                fill={activeRegion === 'occipital' ? '#4ade80' : 'rgba(74,222,128,0.25)'}
+                stroke={activeRegion === 'occipital' ? '#4ade80' : 'rgba(148,163,184,0.7)'}
+                strokeWidth={activeRegion === 'occipital' ? 2.5 : 1.5}
+                onMouseEnter={() => setActiveRegion('occipital')}
+                onClick={() => setActiveRegion('occipital')}
+                style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
+              />
 
-                {/* Hippocampus */}
-                <ellipse
-                    cx={120}
-                    cy={110}
-                    rx={22}
-                    ry={16}
-                    fill={activeRegion === 'hippocampus' ? '#eab308' : 'rgba(234,179,8,0.3)'}
-                    stroke={activeRegion === 'hippocampus' ? '#eab308' : 'rgba(148,163,184,0.8)'}
-                    strokeWidth={activeRegion === 'hippocampus' ? 2.5 : 1.5}
-                    onMouseEnter={() => setActiveRegion('hippocampus')}
-                    onClick={() => setActiveRegion('hippocampus')}
-                    style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
-                />
-                </svg>
+              {/* Hippocampus */}
+              <ellipse
+                cx={120}
+                cy={110}
+                rx={22}
+                ry={16}
+                fill={activeRegion === 'hippocampus' ? '#eab308' : 'rgba(234,179,8,0.3)'}
+                stroke={activeRegion === 'hippocampus' ? '#eab308' : 'rgba(148,163,184,0.8)'}
+                strokeWidth={activeRegion === 'hippocampus' ? 2.5 : 1.5}
+                onMouseEnter={() => setActiveRegion('hippocampus')}
+                onClick={() => setActiveRegion('hippocampus')}
+                style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
+              />
+            </svg>
           </div>
 
-          {/* Region chips */}
-          <div className="mt-3 flex flex-wrap gap-2">
-            {brainRegions.map(region => (
-              <button
-                key={region.id}
-                onClick={() => setActiveRegion(region.id)}
-                className={[
-                  'px-2.5 py-1 rounded-full text-[11px] border transition-colors',
-                  activeRegion === region.id
-                    ? 'border-cyan-400 bg-cyan-500/20 text-cyan-200'
-                    : 'border-slate-700 bg-slate-900 text-slate-300 hover:border-slate-500',
-                ].join(' ')}
-              >
-                {region.label}
-              </button>
-            ))}
+          {/* Region explanation */}
+          <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
+            <h2 className="text-sm font-semibold text-slate-100">
+              {activeRegionData.label}
+            </h2>
+            <p className="text-[12px] text-cyan-300">Role: {activeRegionData.role}</p>
+            <p className="text-[12px] text-slate-200">
+              <span className="font-semibold text-slate-100">Everyday impact: </span>
+              {activeRegionData.everydayImpact}
+            </p>
+            <p className="text-[12px] text-slate-400">
+              <span className="font-semibold text-slate-200">In Alzheimer's: </span>
+              {activeRegionData.adLink}
+            </p>
           </div>
         </div>
 
-        {/* Region explanation */}
-        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
-          <h2 className="text-sm font-semibold text-slate-100">
-            {activeRegionData.label}
-          </h2>
-          <p className="text-[12px] text-cyan-300">
-            Role: {activeRegionData.role}
-          </p>
-          <p className="text-[12px] text-slate-200">
-            <span className="font-semibold text-slate-100">Everyday impact: </span>
-            {activeRegionData.everydayImpact}
-          </p>
-          <p className="text-[12px] text-slate-400">
-            <span className="font-semibold text-slate-200">In Alzheimer&apos;s: </span>
-            {activeRegionData.adLink}
-          </p>
+        {/* Region chips */}
+        <div className="mt-3 flex flex-wrap gap-2 md:col-span-2">
+          {brainRegions.map(region => (
+            <button
+              key={region.id}
+              onClick={() => setActiveRegion(region.id)}
+              className={[
+                'px-2.5 py-1 rounded-full text-[11px] border transition-colors',
+                activeRegion === region.id
+                  ? 'border-cyan-400 bg-cyan-500/20 text-cyan-200'
+                  : 'border-slate-700 bg-slate-900 text-slate-300 hover:border-slate-500',
+              ].join(' ')}
+            >
+              {region.label}
+            </button>
+          ))}
         </div>
       </section>
 
-      {/* 3. Stage overview */}
+      {/* 3. Molecular view: amyloid, tau, neurodegeneration */}
+      <section className="space-y-3">
+        <h2 className="text-sm font-semibold text-slate-100">
+          From molecules to damage: amyloid, tau, and neurodegeneration
+        </h2>
+        <p className="text-[11px] text-slate-400 max-w-3xl">
+          Alzheimer's disease is often described using three major biomarker families:{' '}
+          <span className="text-slate-100 font-medium">amyloid (A)</span>,{' '}
+          <span className="text-slate-100 font-medium">tau (T)</span>, and{' '}
+          <span className="text-slate-100 font-medium">neurodegeneration (N)</span>. These
+          animations give a qualitative sense of what each process looks like, from abnormal
+          protein build-up to damage in brain cells.
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-4">
+          {/* Amyloid */}
+            <div className="bg-slate-900/80 border border-slate-800 rounded-xl overflow-hidden flex flex-col shadow-sm">
+                <div className="relative aspect-[9/5] overflow-hidden bg-slate-950">
+                <img
+                    src={amyloidGif}
+                    alt="Animation of amyloid precursor protein and amyloid plaques"
+                    className="w-full h-full object-cover transition-transform duration-200 ease-out hover:scale-[1.03]"
+                    loading="lazy"
+                    />
+                </div>
+                <div className="p-3 space-y-1">
+                <h3 className="text-xs font-semibold text-slate-100">Amyloid (A)</h3>
+                <p className="text-[11px] text-slate-200">
+                    <span className="font-semibold">For everyone:</span> Amyloid comes from a
+                    normal protein that is cut in a way that lets pieces clump together outside of
+                    brain cells, forming plaques.
+                </p>
+                <p className="text-[11px] text-slate-400">
+                    <span className="font-semibold">For researchers:</span> This corresponds to
+                    amyloid precursor protein processing and Aβ aggregation, captured in biomarkers
+                    such as amyloid PET or CSF Aβ42/40.
+                </p>
+                </div>
+            </div>
+
+            {/* Tau */}
+            <div className="bg-slate-900/80 border border-slate-800 rounded-xl overflow-hidden flex flex-col shadow-sm">
+                <div className="relative aspect-[9/5] overflow-hidden bg-slate-950">
+                <img
+                    src={tauGif}
+                    alt="Animation of tau tangles forming inside neurons"
+                    className="w-full h-full object-cover transition-transform duration-200 ease-out hover:scale-[1.03]"
+                    loading="lazy"
+                />
+                </div>
+                <div className="p-3 space-y-1">
+                <h3 className="text-xs font-semibold text-slate-100">Tau (T)</h3>
+                <p className="text-[11px] text-slate-200">
+                    <span className="font-semibold">For everyone:</span> Inside the cell, tau
+                    proteins can twist into &quot;tangles&quot; that disrupt how neurons work and
+                    eventually survive.
+                </p>
+                <p className="text-[11px] text-slate-400">
+                    <span className="font-semibold">For researchers:</span> Abnormal
+                    hyperphosphorylated tau accumulates in a stereotyped pattern, measured with tau
+                    PET or CSF p-tau, and is tightly linked to symptom severity.
+                </p>
+                </div>
+            </div>
+
+            {/* Neurodegeneration */}
+            <div className="bg-slate-900/80 border border-slate-800 rounded-xl overflow-hidden flex flex-col shadow-sm">
+                <div className="relative aspect-[9/5] overflow-hidden bg-slate-950">
+                    <img
+                        src={neuroGif}
+                        alt="Animation of neuronal degeneration in the brain"
+                        className="w-full h-full object-cover transition-transform duration-200 ease-out hover:scale-[1.03]"
+                        loading="lazy"
+                    />
+                </div>
+                <div className="p-3 space-y-1">
+                    <h3 className="text-xs font-semibold text-slate-100">Neurodegeneration (N)</h3>
+                    <p className="text-[11px] text-slate-200">
+                        <span className="font-semibold">For everyone:</span> Over time, damage from abnormal proteins causes brain cells and their connections to break down, leading to shrinkage (atrophy) of affected brain regions.
+                    </p>
+                    <p className="text-[11px] text-slate-400">
+                        <span className="font-semibold">For researchers:</span> Neurodegeneration is typically indexed with structural MRI (cortical thickness, volume loss), FDG-PET, or fluid markers of neuronal injury. In AT(N) frameworks, it reflects downstream tissue loss that often tracks with clinical decline.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div className="mt-2 text-[10px] text-slate-500 max-w-3xl">
+            Animations adapted from: 
+            <span className="italic">
+                {' '}Uncovering the Heterogeneity of Neurodegeneration Trajectories in Alzheimer’s Disease
+            </span>
+            , Minghan Chen, Computer Science Department, Math Bio Seminar, Penn State, 11/27/2022.
+        </div>
+      </section>
+
+      {/* 4. Stage overview */}
       <section className="space-y-3">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
           <div>
             <h2 className="text-sm font-semibold text-slate-100">
-              Stages of Alzheimer&apos;s disease
+              Stages of Alzheimer's disease
             </h2>
             <p className="text-[11px] text-slate-400 max-w-2xl">
-              Alzheimer&apos;s usually follows a progressive pattern. Not everyone fits neatly into
-              a single stage, but this 4-stage view—preclinical, mild (early), moderate (middle),
-              and severe (late)—helps organize what&apos;s happening in the brain and in daily life.
+              Alzheimer's usually follows a progressive pattern. Not everyone fits neatly
+              into a single stage, but this 4-stage view—preclinical, mild (early), moderate
+              (middle), and severe (late)—helps organize what's happening in the brain and
+              in daily life.
             </p>
           </div>
         </div>
@@ -368,7 +479,7 @@ export default function Intro() {
         </div>
       </section>
 
-      {/* 4. Where we will plug in agents */}
+      {/* 5. Where we will plug in agents */}
       <section className="space-y-3">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
           <div>
@@ -386,7 +497,8 @@ export default function Intro() {
               handling quality checks and privacy-aware summaries.
             </p>
             <p className="text-slate-500">
-              In this UI, it will eventually supply real cohort presets to the Biomarker Playground.
+              In this UI, it will eventually supply real cohort presets to the Biomarker
+              Playground.
             </p>
           </div>
 
@@ -405,12 +517,12 @@ export default function Intro() {
           <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
             <h3 className="font-semibold text-slate-100">Explanation agent</h3>
             <p className="text-slate-300">
-              Turns model outputs into human-readable explanations, tuned for different audiences
-              (family member vs. clinician vs. researcher).
+              Turns model outputs into human-readable explanations, adapted for different
+              audiences (family member vs. clinician vs. researcher).
             </p>
             <p className="text-slate-500">
-              It will dynamically generate text like the stage summaries and region descriptions
-              you see on this page.
+              It will dynamically generate text like the stage summaries and region
+              descriptions you see on this page.
             </p>
           </div>
 
@@ -421,8 +533,8 @@ export default function Intro() {
               synchronized across stages, brain regions, and biomarker curves.
             </p>
             <p className="text-slate-500">
-              In practice, it will sit behind the routes and components of this site, deciding
-              when to refresh data and when to explain changes.
+              In practice, it will sit behind the routes and components of this site,
+              deciding when to refresh data and when to explain changes.
             </p>
           </div>
         </div>
