@@ -147,8 +147,8 @@ export default function Intro() {
             <p className="text-slate-300 text-sm md:text-base max-w-2xl">
               This site is an interactive companion to ongoing research in Professor Chen&apos;s modeling lab, implementing{' '}
               <span className="text-cyan-300 font-medium">agentic AI for Alzheimer&apos;s disease</span>.
-              This site is designed for a broad audience: open to students learning about Alzheimer&apos;s for the first
-              time, clinicians, and researchers who want navigate the complex relationships affecting brain changes, symptoms,
+              This site is designed for a individuals of all backgrounds: open to students learning about Alzheimer&apos;s for the first
+              time, to clinicians and researchers who want navigate the complex relationships affecting brain changes, symptoms,
               and biomarkers in an intuitive manner.
             </p>
           </div>
@@ -172,9 +172,7 @@ export default function Intro() {
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3">
             <div className="font-semibold text-slate-100 mb-1">How common is it?</div>
             <p>
-              Alzheimer&apos;s mainly affects people over 65, but a small number of people have{' '}
-              <span className="text-slate-100 font-medium">early-onset</span> disease in their 30s or 40s.
-              People often live many years with the condition, and the speed of progression varies widely.
+                According to the Alzheimer's Association, over 7 million Americans are currently living with Alzheimer's. This disease affects approximately 1 in 9 people age 65 and older. By 2050, this number is projected to rise to nearly 13 million.
             </p>
           </div>
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3">
@@ -192,7 +190,7 @@ export default function Intro() {
         {/* Brain graphic */}
         <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4">
           <h2 className="text-sm font-semibold text-slate-100 mb-2">
-            Explore the key brain regions affected in Alzheimer&apos;s
+            Explore the key brain regions affected in Alzheimer's
           </h2>
           <p className="text-[11px] text-slate-400 mb-3">
             Hover or tap to highlight regions the brain. The panel on the right explains each area&apos;s function and how changes there can show up in everyday life.

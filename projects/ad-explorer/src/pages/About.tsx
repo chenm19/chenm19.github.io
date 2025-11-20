@@ -13,11 +13,11 @@ export default function About() {
           rel="noopener noreferrer"
           className="text-blue-400 hover:text-blue-300 transition"
         >
-          Professor Chen&apos;s Modeling Lab @ Wake Forest University
+          Professor Chen's Modeling Lab @ Wake Forest University
         </a>.
         <br /><br />
         This project endeavors to create an accessible, intuitive environment to support the
-        understanding Alzheimer&apos;s disease biomarkers-particularly the dynamics of the established
+        understanding Alzheimer's' disease biomarkers-particularly the dynamics of the established
         amyloid, tau, and neurodegeneration (AT(N)) framework. Rather than relying on
         static examples, these interactive tools help students,
         researchers, and clinicians experiment with conceptual disease timelines
