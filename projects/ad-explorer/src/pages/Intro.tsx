@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+{/* Abstracted Brain Lobe Component */}
+import { BrainLobesOverlay } from '../components/BrainLobesOverlay'
+
 {/* Gifs */}
 import amyloidGif from '../assets/biomarkers/amyloid.gif'
 import tauGif from '../assets/biomarkers/tau.gif'
@@ -200,134 +203,63 @@ export default function Intro() {
         </div>
       </section>
 
-      {/* 2. Interactive brain map */}
-      <section className="grid md:grid-cols-2 gap-5 items-start">
-        {/* Brain graphic */}
-        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4">
-          <h2 className="text-sm font-semibold text-slate-100 mb-2">
-            Explore the key brain regions affected in Alzheimer's
-          </h2>
-          <p className="text-[11px] text-slate-400 mb-3">
-            Hover or tap to highlight regions of the brain. The panel on the right explains each
-            area's function and how changes there can show up in everyday life.
-          </p>
-          <div className="flex justify-center">
-            <svg
-              viewBox="0 0 260 200"
-              className="w-full max-w-xs drop-shadow-[0_0_40px_rgba(8,47,73,0.7)]"
-            >
-              <defs>
-                {/* Soft background gradient for the brain */}
-                <linearGradient id="brainGradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#020617" />
-                  <stop offset="40%" stopColor="#020617" />
-                  <stop offset="100%" stopColor="#020617" />
-                </linearGradient>
-              </defs>
+            {/* 2. Interactive brain map */}
+        <section className="space-y-3">
+            <div className="grid md:grid-cols-2 gap-5 items-start">
+            {/* Generated brain graphic */}
+            <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4">
+                <h2 className="text-sm font-semibold text-slate-100 mb-2">
+                Explore the key brain regions affected in Alzheimer's
+                </h2>
+                <p className="text-[11px] text-slate-400 mb-3">
+                Hover or tap to highlight regions of the brain. The panel on the right explains
+                each area's function and how changes there can show up in everyday life.
+                </p>
+                <div className="flex justify-center">
+                    <BrainLobesOverlay
+                        activeRegion={activeRegion}
+                        setActiveRegion={setActiveRegion}
+                    />
+                </div>
+            </div>
 
-              {/* Filled brain silhouette */}
-              <path
-                d="M50 60 C 40 40, 55 20, 85 20 C 100 5, 130 5, 150 20 C 180 10, 210 25, 210 55 C 235 75, 230 115, 210 130 C 210 155, 185 180, 150 175 C 135 190, 105 190, 90 175 C 65 185, 35 165, 40 135 C 20 115, 20 80, 50 60 Z"
-                fill="url(#brainGradient)"
-                stroke="#020617"
-                strokeWidth={4}
-              />
+            {/* Region explanations */}
+            <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2 h-full">
+                <h2 className="text-sm font-semibold text-slate-100">
+                {activeRegionData.label}
+                </h2>
+                <p className="text-[12px] text-cyan-300">
+                Role: {activeRegionData.role}
+                </p>
+                <p className="text-[12px] text-slate-200">
+                <span className="font-semibold text-slate-100">Everyday impact: </span>
+                {activeRegionData.everydayImpact}
+                </p>
+                <p className="text-[12px] text-slate-400">
+                <span className="font-semibold text-slate-200">In Alzheimer's: </span>
+                {activeRegionData.adLink}
+                </p>
+            </div>
+            </div>
 
-              {/* Frontal lobe */}
-              <path
-                d="M60 70 C 50 55, 60 35, 90 30 C 105 28, 120 35, 125 50 C 110 60, 90 70, 60 70 Z"
-                fill={activeRegion === 'frontal' ? '#22d3ee' : 'rgba(34,211,238,0.25)'}
-                stroke={activeRegion === 'frontal' ? '#22d3ee' : 'rgba(148,163,184,0.7)'}
-                strokeWidth={activeRegion === 'frontal' ? 2.5 : 1.5}
-                onMouseEnter={() => setActiveRegion('frontal')}
-                onClick={() => setActiveRegion('frontal')}
-                style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
-              />
-
-              {/* Temporal lobe */}
-              <path
-                d="M80 95 C 65 95, 55 105, 55 120 C 58 135, 70 145, 90 145 C 105 143, 120 135, 125 120 C 120 105, 105 95, 80 95 Z"
-                fill={activeRegion === 'temporal' ? '#a855f7' : 'rgba(168,85,247,0.25)'}
-                stroke={activeRegion === 'temporal' ? '#a855f7' : 'rgba(148,163,184,0.7)'}
-                strokeWidth={activeRegion === 'temporal' ? 2.5 : 1.5}
-                onMouseEnter={() => setActiveRegion('temporal')}
-                onClick={() => setActiveRegion('temporal')}
-                style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
-              />
-
-              {/* Parietal lobe */}
-              <path
-                d="M115 55 C 125 40, 145 35, 165 40 C 180 45, 190 60, 190 75 C 175 82, 160 90, 140 92 C 130 90, 120 82, 115 70 Z"
-                fill={activeRegion === 'parietal' ? '#f97316' : 'rgba(249,115,22,0.25)'}
-                stroke={activeRegion === 'parietal' ? '#f97316' : 'rgba(148,163,184,0.7)'}
-                strokeWidth={activeRegion === 'parietal' ? 2.5 : 1.5}
-                onMouseEnter={() => setActiveRegion('parietal')}
-                onClick={() => setActiveRegion('parietal')}
-                style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
-              />
-
-              {/* Occipital lobe */}
-              <path
-                d="M165 85 C 185 82, 205 90, 210 105 C 212 120, 205 135, 190 140 C 175 142, 160 135, 155 122 C 158 110, 160 95, 165 85 Z"
-                fill={activeRegion === 'occipital' ? '#4ade80' : 'rgba(74,222,128,0.25)'}
-                stroke={activeRegion === 'occipital' ? '#4ade80' : 'rgba(148,163,184,0.7)'}
-                strokeWidth={activeRegion === 'occipital' ? 2.5 : 1.5}
-                onMouseEnter={() => setActiveRegion('occipital')}
-                onClick={() => setActiveRegion('occipital')}
-                style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
-              />
-
-              {/* Hippocampus */}
-              <ellipse
-                cx={120}
-                cy={110}
-                rx={22}
-                ry={16}
-                fill={activeRegion === 'hippocampus' ? '#eab308' : 'rgba(234,179,8,0.3)'}
-                stroke={activeRegion === 'hippocampus' ? '#eab308' : 'rgba(148,163,184,0.8)'}
-                strokeWidth={activeRegion === 'hippocampus' ? 2.5 : 1.5}
-                onMouseEnter={() => setActiveRegion('hippocampus')}
-                onClick={() => setActiveRegion('hippocampus')}
-                style={{ cursor: 'pointer', transition: 'all 0.15s ease-out' }}
-              />
-            </svg>
-          </div>
-
-          {/* Region explanation */}
-          <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
-            <h2 className="text-sm font-semibold text-slate-100">
-              {activeRegionData.label}
-            </h2>
-            <p className="text-[12px] text-cyan-300">Role: {activeRegionData.role}</p>
-            <p className="text-[12px] text-slate-200">
-              <span className="font-semibold text-slate-100">Everyday impact: </span>
-              {activeRegionData.everydayImpact}
-            </p>
-            <p className="text-[12px] text-slate-400">
-              <span className="font-semibold text-slate-200">In Alzheimer's: </span>
-              {activeRegionData.adLink}
-            </p>
-          </div>
-        </div>
-
-        {/* Region chips */}
-        <div className="mt-3 flex flex-wrap gap-2 md:col-span-2">
-          {brainRegions.map(region => (
-            <button
-              key={region.id}
-              onClick={() => setActiveRegion(region.id)}
-              className={[
-                'px-2.5 py-1 rounded-full text-[11px] border transition-colors',
-                activeRegion === region.id
-                  ? 'border-cyan-400 bg-cyan-500/20 text-cyan-200'
-                  : 'border-slate-700 bg-slate-900 text-slate-300 hover:border-slate-500',
-              ].join(' ')}
-            >
-              {region.label}
-            </button>
-          ))}
-        </div>
-      </section>
+            {/* Region chips */}
+            <div className="flex flex-wrap gap-2">
+            {brainRegions.map(region => (
+                <button
+                key={region.id}
+                onClick={() => setActiveRegion(region.id)}
+                className={[
+                    'px-2.5 py-1 rounded-full text-[11px] border transition-colors',
+                    activeRegion === region.id
+                    ? 'border-cyan-400 bg-cyan-500/20 text-cyan-200'
+                    : 'border-slate-700 bg-slate-900 text-slate-300 hover:border-slate-500',
+                ].join(' ')}
+                >
+                {region.label}
+                </button>
+            ))}
+            </div>
+        </section>
 
       {/* 3. Molecular view: amyloid, tau, neurodegeneration */}
       <section className="space-y-3">
@@ -479,12 +411,12 @@ export default function Intro() {
         </div>
       </section>
 
-      {/* 5. Where we will plug in agents */}
+      {/* 5. Agents to be plugged in */}
       <section className="space-y-3">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
           <div>
             <h2 className="text-sm font-semibold text-slate-100">
-              How this connects to the agentic AI system
+              How this connects to the our agentic AI system
             </h2>
           </div>
         </div>
