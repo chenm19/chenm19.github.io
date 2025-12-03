@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts'
+import ATNClusteringPanel from "../components/atn/ATNClusteringPanel";
 
 type BiomarkerPoint = {
   t: number
@@ -135,6 +136,8 @@ export default function BiomarkerPlayground() {
           </LineChart>
         </ResponsiveContainer>
       </div>
+
+      <ATNClusteringPanel />
     </div>
   )
 }
