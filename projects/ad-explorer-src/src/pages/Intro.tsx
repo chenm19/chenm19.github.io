@@ -425,7 +425,7 @@ export default function Intro() {
           <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
             <h3 className="font-semibold text-slate-100">Data agent</h3>
             <p className="text-slate-300">
-              Gathers and harmonizes imaging, omics, and clinical data into a unified format,
+              Gathers and harmonizes imaging and clinical data into a unified format,
               handling quality checks and privacy-aware summaries.
             </p>
             <p className="text-slate-500">
