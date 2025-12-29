@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react'
+import ATNClusteringPanel from "../components/atn/ATNClusteringPanel";
+import SupervisedResultsPanel from "../components/atn/SupervisedResultsPanel";
 import {
   ResponsiveContainer,
   LineChart,
@@ -9,7 +11,6 @@ import {
   Tooltip,
   Legend,
 } from 'recharts'
-import ATNClusteringPanel from "../components/atn/ATNClusteringPanel";
 
 type BiomarkerPoint = {
   t: number
@@ -138,6 +139,7 @@ export default function BiomarkerPlayground() {
       </div>
 
       <ATNClusteringPanel />
+      <SupervisedResultsPanel />
     </div>
   )
 }

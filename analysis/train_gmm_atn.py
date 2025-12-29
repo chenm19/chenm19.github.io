@@ -34,7 +34,7 @@ def main():
     ptids = df["PTID"].astype(str).values
     ATN = df[["A", "T", "N"]].to_numpy(dtype=float)
 
-    # Standardize and fit Gaussian Mixture Model (GMM)
+    # Standardize and fit Gaussian Mixture Model
     scaler = StandardScaler()
     X = scaler.fit_transform(ATN)
 
@@ -54,7 +54,7 @@ def main():
             centroids.append(ATN[mask].mean(axis=0))
     centroids = np.vstack(centroids)
 
-    # Order clusters by disease severity (A+T+N)
+    # Order clusters by disease severity
     severity = centroids.sum(axis=1)  # larger is more advanced
     order = np.argsort(severity)      # low to high
 
