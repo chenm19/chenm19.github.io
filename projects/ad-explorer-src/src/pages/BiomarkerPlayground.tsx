@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react'
+import ATNClusteringPanel from "../components/atn/ATNClusteringPanel";
+import SupervisedResultsPanel from "../components/atn/SupervisedResultsPanel";
 import {
   ResponsiveContainer,
   LineChart,
@@ -135,6 +137,9 @@ export default function BiomarkerPlayground() {
           </LineChart>
         </ResponsiveContainer>
       </div>
+
+      <ATNClusteringPanel />
+      <SupervisedResultsPanel />
     </div>
   )
 }
