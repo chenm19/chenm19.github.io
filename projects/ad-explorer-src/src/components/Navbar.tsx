@@ -64,11 +64,14 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right-side pill */}
-        <div className="hidden md:flex items-center gap-2 text-[11px] text-slate-400">
-          <span className="px-2 py-1 rounded-full border border-slate-700/80 bg-slate-900/60">
+        {/* Right-side navigation pill to Biomarker Playground */}
+        <div className="hidden md:flex items-center gap-2 text-[11px]">
+          <NavLink
+            to="/playground"
+            className="px-2 py-1 rounded-full border border-slate-700/80 bg-slate-900/60 text-slate-300 hover:text-white hover:bg-slate-800/80 transition"
+          >
             Interactive demo
-          </span>
+          </NavLink>
         </div>
 
         {/* Mobile hamburger */}
