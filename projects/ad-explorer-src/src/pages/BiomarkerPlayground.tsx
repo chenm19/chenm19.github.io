@@ -1,6 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import ATNClusteringPanel from "../components/atn/ATNClusteringPanel";
 import SupervisedResultsPanel from "../components/atn/SupervisedResultsPanel";
+import type { ATNInput, InferenceResult } from "../inference/types";
+import { infer } from "../inference/infer";
+import InferenceInputCard from "../components/inference/InferenceInputCard";
+import Stage5ProbsCard from "../components/inference/Stage5ProbsCard";
 import {
   ResponsiveContainer,
   LineChart,
@@ -27,6 +31,14 @@ export default function BiomarkerPlayground() {
   const [amyloidRate, setAmyloidRate] = useState(0.35)
   const [tauDelay, setTauDelay] = useState(3)
   const [neuroSensitivity, setNeuroSensitivity] = useState(1.2)
+  const engine = "gmm-nearest" as const;
+
+  const [inferenceResult, setInferenceResult] = useState<InferenceResult | null>(null);
+
+  const handleAtnChange = useCallback((input: ATNInput) => {
+    const r = infer(input, engine);
+    setInferenceResult(r);
+  }, [engine]);
 
   const data: BiomarkerPoint[] = useMemo(() => {
     const points: BiomarkerPoint[] = []
@@ -54,6 +66,13 @@ export default function BiomarkerPlayground() {
           neurodegeneration might evolve over time in a simplified AT(N) framework.
         </p>
       </div>
+
+      {/* modular real-time inference */}
+      <div className="grid lg:grid-cols-2 gap-4">
+        <InferenceInputCard engine={engine} onChange={handleAtnChange} />
+        <Stage5ProbsCard result={inferenceResult} />
+      </div>
+
 
       {/* Controls */}
       <div className="grid md:grid-cols-3 gap-4 text-xs md:text-sm">
@@ -116,8 +135,8 @@ export default function BiomarkerPlayground() {
       </div>
 
       {/* Chart */}
-      <div className="h-72 md:h-80 bg-slate-900/80 border border-slate-800 rounded-xl p-3">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="h-72 md:h-80 min-w-0 bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
           <LineChart data={data} margin={{ top: 10, right: 20, bottom: 10, left: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
             <XAxis dataKey="t" stroke="#9ca3af" tickLine={false} />
@@ -130,7 +149,7 @@ export default function BiomarkerPlayground() {
                 fontSize: 11,
               }}
             />
-            <Legend />
+            <Legend verticalAlign="bottom" height={24} />
             <Line type="monotone" dataKey="amyloid" stroke="#22d3ee" dot={false} name="Amyloid (A)" />
             <Line type="monotone" dataKey="tau" stroke="#a855f7" dot={false} name="Tau (T)" />
             <Line type="monotone" dataKey="neuro" stroke="#f97316" dot={false} name="Neurodegeneration (N)" />

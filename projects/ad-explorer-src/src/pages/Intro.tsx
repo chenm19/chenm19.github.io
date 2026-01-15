@@ -261,7 +261,7 @@ export default function Intro() {
             </div>
         </section>
 
-      {/* 3. Molecular view: amyloid, tau, neurodegeneration */}
+      {/* 3. Molecular view*/}
       <section className="space-y-3">
         <h2 className="text-sm font-semibold text-slate-100">
           From molecules to damage: amyloid, tau, and neurodegeneration
@@ -411,66 +411,67 @@ export default function Intro() {
         </div>
       </section>
 
-      {/* 5. Agents to be plugged in */}
-      <section className="space-y-3">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
-          <div>
-            <h2 className="text-sm font-semibold text-slate-100">
-              How this connects to the our agentic AI system
-            </h2>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-4 gap-3 text-[11px]">
-          <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
-            <h3 className="font-semibold text-slate-100">Data agent</h3>
-            <p className="text-slate-300">
-              Gathers and harmonizes imaging and clinical data into a unified format,
-              handling quality checks and privacy-aware summaries.
-            </p>
-            <p className="text-slate-500">
-              In this UI, it will eventually supply real cohort presets to the Biomarker
-              Playground.
-            </p>
+      {/* 5. Agents to plug in */}
+        <section className="space-y-3">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
+            <div>
+              <h2 className="text-sm font-semibold text-slate-100">
+                How this connects to the current MVP system layout
+              </h2>
+              <p className="text-[11px] text-slate-400 max-w-3xl mt-1">
+                The current MVP is intentionally modular: a modeling layer produces stage signals,
+                an inference layer returns real-time probabilities for new inputs, and a visualization
+                layer renders outputs in an interactive, audience-friendly format. As the thesis evolves,
+                any single layer can be swapped (e.g., GMM → other clustering methods, or a future 1D
+                transformer) without rewriting the UI.
+              </p>
+            </div>
           </div>
 
-          <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
-            <h3 className="font-semibold text-slate-100">Modeling agent</h3>
-            <p className="text-slate-300">
-              Wraps machine-learning models that estimate risk, trajectories, or stage
-              probabilities from multi-modal input.
-            </p>
-            <p className="text-slate-500">
-              Its outputs will replace the hand-crafted curves with model-driven AT(N)
-              trajectories in the Playground.
-            </p>
-          </div>
+          <div className="grid md:grid-cols-4 gap-3 text-[11px]">
+            <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
+              <h3 className="font-semibold text-slate-100">Modeling layer</h3>
+              <p className="text-slate-300">
+                Encapsulates the underlying methods used to characterize AT(N) structure and stage
+                patterns (e.g., unsupervised clustering and supervised classifiers).
+              </p>
+              <p className="text-slate-500">
+                In the MVP, this includes the GMM-derived cluster structure and supervised stage
+                baselines shown in the Playground panels.
+              </p>
+            </div>
 
-          <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
-            <h3 className="font-semibold text-slate-100">Explanation agent</h3>
-            <p className="text-slate-300">
-              Turns model outputs into human-readable explanations, adapted for different
-              audiences (family member vs. clinician vs. researcher).
-            </p>
-            <p className="text-slate-500">
-              It will dynamically generate text like the stage summaries and region
-              descriptions you see on this page.
-            </p>
-          </div>
+            <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
+              <h3 className="font-semibold text-slate-100">Inference agent</h3>
+              <p className="text-slate-300">
+                Accepts user-provided AT(N) inputs, and returns a probability distribution over the five disease-state categories in real time. 
+              </p>
+              <p className="text-slate-500">
+                This is implemented as a thin, replaceable engine layer, i.e., a simple probabilistic lookup. Later this can be adapted to a pretrained 1D transformer behind a stable input/output contract.
+              </p>
+            </div>
 
-          <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
-            <h3 className="font-semibold text-slate-100">Coordinator agent</h3>
-            <p className="text-slate-300">
-              Orchestrates the other agents, responds to user actions, and keeps views
-              synchronized across stages, brain regions, and biomarker curves.
-            </p>
-            <p className="text-slate-500">
-              In practice, it will sit behind the routes and components of this site,
-              deciding when to refresh data and when to explain changes.
-            </p>
+            <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
+              <h3 className="font-semibold text-slate-100">Visualization layer</h3>
+              <p className="text-slate-300">
+                Renders model outputs and uncertainty in an accessible form—interactive plots, hover tooltips, and probability summaries that update immediately.
+              </p>
+              <p className="text-slate-500">
+                The goal is to make both structure (clusters) and uncertainty (probabilities) visible with minimal ML background knowledge.
+              </p>
+            </div>
+
+            <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
+              <h3 className="font-semibold text-slate-100">(Optional) Coordination layer</h3>
+              <p className="text-slate-300">
+                A lightweight controller that keeps the UI consistent as the user explores—syncing selected inputs, charts, and displayed explanations across pages.
+              </p>
+              <p className="text-slate-500">
+                This is handled implicitly by React state and routing; to be further formalized to handle multi-step workflows and automated narratives as they are added.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
     </div>
   )
 }
