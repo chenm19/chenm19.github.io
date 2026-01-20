@@ -24,13 +24,6 @@ const clusters: PatientClusterResult[] = (clustersData as PatientClusterResult[]
   n: Number(r.n),
 }));
 
-function l2(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number) {
-  const dx = x1 - x2;
-  const dy = y1 - y2;
-  const dz = z1 - z2;
-  return dx * dx + dy * dy + dz * dz;
-}
-
 function mean(values: number[]): number {
   if (values.length === 0) return 0;
   return values.reduce((s, v) => s + v, 0) / values.length;
@@ -69,7 +62,8 @@ const T_STD = std(tVals);
 const N_STD = std(nVals);
 
 /**
- * squared Euclidean distance in standardized (z-score) space to make distances comparable across dimensions and consistent with OOD thresholding
+ * squared Euclidean distance in standardized (z-score) space.
+ * standardizing makes the A/T/N axes comparable so one dimension doesn't dominate distance.
  */
 function l2Scaled(
   a1: number,
@@ -90,8 +84,7 @@ export function inferGmmNearest(input: ATNInput): InferenceResult {
   let bestD2 = Infinity;
 
   for (const c of clusters) {
-    // nearest neighbor is chosen using the same scaled metric used for OOD
-    // avoids “always OOD” when raw A/T/N are tightly clustered
+    // nearest neighbor is chosen in standardized space so A/T/N contribute comparably
     const d2 = l2Scaled(input.a, input.t, input.n, c.a, c.t, c.n);
 
     if (d2 < bestD2) {
