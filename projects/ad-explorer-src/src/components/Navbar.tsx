@@ -4,8 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 const tabs = [
   { to: '/', label: 'Overview' },
-  { to: '/playground', label: 'Biomarker Playground' },
-  { to: '/agents', label: 'Agent Orchestration' },
+  { to: '/playground', label: 'AI Predictor' },
+  { to: '/agents', label: 'AI Agents' },
   { to: '/about', label: 'About / Methods' },
 ]
 

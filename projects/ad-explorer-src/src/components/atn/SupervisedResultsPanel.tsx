@@ -80,7 +80,7 @@ export default function SupervisedResultsPanel() {
             </span>
           </div>
           <p className="text-slate-300 text-xs">
-            Multinomial model with class-weighting. Provides a simple linear
+            A multinomial model with class-weighting. Provides a simple linear
             decision boundary in ATN space.
           </p>
           <dl className="mt-2 grid grid-cols-2 gap-y-1 text-xs">
@@ -107,7 +107,7 @@ export default function SupervisedResultsPanel() {
             </span>
           </div>
           <p className="text-slate-300 text-xs">
-            Non-linear ensemble model. Fits CN and MCI strongly but is limited
+            A non-linear ensemble model. Fits CN and MCI strongly but is limited
             on AD by the extremely small sample size.
           </p>
           <dl className="mt-2 grid grid-cols-2 gap-y-1 text-xs">

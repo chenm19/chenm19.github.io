@@ -156,10 +156,7 @@ export default function Intro() {
               This site is an interactive companion to ongoing research in Professor Chen's
               modeling lab, implementing{' '}
               <span className="text-cyan-300 font-medium">agentic AI for Alzheimer's disease</span>.
-              This site is designed for individuals of all backgrounds: open to students learning
-              about Alzheimer's for the first time, to clinicians and researchers who want
-              to navigate the complex relationships affecting brain changes, symptoms, and
-              biomarkers in an intuitive manner.
+              This site is designed for individuals of all backgrounds: open to students learning about Alzheimer's for the first time, to clinicians and researchers who want to navigate the complex relationships affecting brain changes, symptoms, and biomarkers in an intuitive manner.
             </p>
           </div>
           <div className="flex flex-col items-end gap-2 text-xs">
@@ -416,38 +413,22 @@ export default function Intro() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
             <div>
               <h2 className="text-sm font-semibold text-slate-100">
-                How this connects to the current MVP system layout
+                MVP system layout
               </h2>
               <p className="text-[11px] text-slate-400 max-w-3xl mt-1">
-                The current MVP is intentionally modular: a modeling layer produces stage signals,
-                an inference layer returns real-time probabilities for new inputs, and a visualization
-                layer renders outputs in an interactive, audience-friendly format. As the thesis evolves,
-                any single layer can be swapped (e.g., GMM → other clustering methods, or a future 1D
-                transformer) without rewriting the UI.
+                The current MVP is intentionally modular: a modeling layer produces stage signals, an inference layer returns real-time probabilities for new inputs, and a visualization layer renders outputs in an interactive, audience-friendly format. As the thesis evolves, any single layer can be swapped (e.g., alternative clustering methods, or a future 1D transformer) without rewriting the UI.
               </p>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-3 text-[11px]">
+          <div className="grid md:grid-cols-3 gap-3 text-[11px]">
             <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
               <h3 className="font-semibold text-slate-100">Modeling layer</h3>
               <p className="text-slate-300">
-                Encapsulates the underlying methods used to characterize AT(N) structure and stage
-                patterns (e.g., unsupervised clustering and supervised classifiers).
+                Encapsulates the underlying methods used to characterize AT(N) structure and stage patterns (e.g., unsupervised clustering and supervised classifiers).
               </p>
               <p className="text-slate-500">
-                In the MVP, this includes the GMM-derived cluster structure and supervised stage
-                baselines shown in the Playground panels.
-              </p>
-            </div>
-
-            <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1">
-              <h3 className="font-semibold text-slate-100">Inference agent</h3>
-              <p className="text-slate-300">
-                Accepts user-provided AT(N) inputs, and returns a probability distribution over the five disease-state categories in real time. 
-              </p>
-              <p className="text-slate-500">
-                This is implemented as a thin, replaceable engine layer, i.e., a simple probabilistic lookup. Later this can be adapted to a pretrained 1D transformer behind a stable input/output contract.
+                In the MVP, this includes the GMM-derived cluster structure and supervised baselines shown in the Playground panels.
               </p>
             </div>
 
