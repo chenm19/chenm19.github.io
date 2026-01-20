@@ -23,6 +23,14 @@ type BiomarkerPoint = {
   neuro: number
 }
 
+function asPct(v: number) {
+  return `${Math.round(v * 100)}%`;
+}
+
+function fmt(v: unknown) {
+  return typeof v === "number" ? v.toFixed(3) : String(v);
+}
+
 function logistic(t: number, k: number, t0: number) {
   return 1 / (1 + Math.exp(-k * (t - t0)))
 }
@@ -31,7 +39,7 @@ export default function BiomarkerPlayground() {
   const [amyloidRate, setAmyloidRate] = useState(0.35)
   const [tauDelay, setTauDelay] = useState(3)
   const [neuroSensitivity, setNeuroSensitivity] = useState(1.2)
-  const engine = "gmm-nearest" as const;
+  const engine = "gmm-nearest";
 
   const [inferenceResult, setInferenceResult] = useState<InferenceResult | null>(null);
 
@@ -67,97 +75,154 @@ export default function BiomarkerPlayground() {
         </p>
       </div>
 
-      {/* modular real-time inference */}
-      <div className="grid lg:grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-2 gap-4 items-stretch">
         <InferenceInputCard engine={engine} onChange={handleAtnChange} />
-        <Stage5ProbsCard result={inferenceResult} />
-      </div>
-
-
-      {/* Controls */}
-      <div className="grid md:grid-cols-3 gap-4 text-xs md:text-sm">
-        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
-          <div className="flex justify-between mb-1">
-            <span className="font-medium text-slate-100">Amyloid speed</span>
-            <span className="text-slate-300">{amyloidRate.toFixed(2)}</span>
-          </div>
-          <p className="text-slate-400 text-[11px] mb-2">
-            Higher values make amyloid positivity occur earlier and more steeply.
-          </p>
-          <input
-            type="range"
-            min={0.1}
-            max={0.8}
-            step={0.05}
-            value={amyloidRate}
-            onChange={e => setAmyloidRate(Number(e.target.value))}
-            className="w-full"
-          />
-        </div>
-
-        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
-          <div className="flex justify-between mb-1">
-            <span className="font-medium text-slate-100">Tau delay</span>
-            <span className="text-slate-300">{tauDelay.toFixed(1)} years</span>
-          </div>
-          <p className="text-slate-400 text-[11px] mb-2">
-            Controls how long after amyloid build-up tau begins to accelerate.
-          </p>
-          <input
-            type="range"
-            min={0}
-            max={6}
-            step={0.5}
-            value={tauDelay}
-            onChange={e => setTauDelay(Number(e.target.value))}
-            className="w-full"
-          />
-        </div>
-
-        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
-          <div className="flex justify-between mb-1">
-            <span className="font-medium text-slate-100">Neuro sensitivity</span>
-            <span className="text-slate-300">{neuroSensitivity.toFixed(2)}</span>
-          </div>
-          <p className="text-slate-400 text-[11px] mb-2">
-            Higher values make neurodegeneration respond more strongly to tau burden.
-          </p>
-          <input
-            type="range"
-            min={0.6}
-            max={2}
-            step={0.1}
-            value={neuroSensitivity}
-            onChange={e => setNeuroSensitivity(Number(e.target.value))}
-            className="w-full"
-          />
+        <div className="lg:mt-0">
+          <ATNClusteringPanel highlightPtid={inferenceResult?.nearest?.ptid} />
         </div>
       </div>
 
-      {/* Chart */}
-      <div className="h-72 md:h-80 min-w-0 bg-slate-900/80 border border-slate-800 rounded-xl p-3">
-        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
-          <LineChart data={data} margin={{ top: 10, right: 20, bottom: 10, left: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
-            <XAxis dataKey="t" stroke="#9ca3af" tickLine={false} />
-            <YAxis domain={[0, 1]} stroke="#9ca3af" tickLine={false} />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: '#020617',
-                border: '1px solid #1f2937',
-                borderRadius: 8,
-                fontSize: 11,
-              }}
+      <div className="flex justify-center">
+        <div className="w-full max-w-2xl">
+          <Stage5ProbsCard result={inferenceResult} />
+        </div>
+      </div>
+
+      {/* Biomarker trajectory controls and chart */}
+      <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-3">
+        <div>
+          <h2 className="text-lg md:text-xl font-semibold">Synthetic Biomarker Trajectories (A/T/N)</h2>
+          <p className="text-slate-300 text-sm mt-1 max-w-3xl">
+            These sliders control a simplified progression model that generates the time-series plot below. This is not a part of the GMM clustering model, instead we can visualize how quickly amyloid rises, when tau begins accelerating, and how strongly neurodegeneration responds to tau.
+          </p>
+        </div>
+
+        {/* Controls */}
+        <div className="grid md:grid-cols-3 gap-4 text-xs md:text-sm">
+          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-3">
+            <div className="flex justify-between mb-1">
+              <span className="font-medium text-slate-100">Amyloid speed</span>
+              <span className="text-slate-300">{amyloidRate.toFixed(2)}</span>
+            </div>
+            <p className="text-slate-400 text-[11px] mb-2">
+              Higher values make amyloid positivity occur earlier and more steeply.
+            </p>
+            <input
+              type="range"
+              min={0.1}
+              max={0.8}
+              step={0.05}
+              value={amyloidRate}
+              onChange={e => setAmyloidRate(Number(e.target.value))}
+              className="w-full"
             />
-            <Legend verticalAlign="bottom" height={24} />
-            <Line type="monotone" dataKey="amyloid" stroke="#22d3ee" dot={false} name="Amyloid (A)" />
-            <Line type="monotone" dataKey="tau" stroke="#a855f7" dot={false} name="Tau (T)" />
-            <Line type="monotone" dataKey="neuro" stroke="#f97316" dot={false} name="Neurodegeneration (N)" />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
+          </div>
 
-      <ATNClusteringPanel />
+          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-3">
+            <div className="flex justify-between mb-1">
+              <span className="font-medium text-slate-100">Tau delay</span>
+              <span className="text-slate-300">{tauDelay.toFixed(1)} years</span>
+            </div>
+            <p className="text-slate-400 text-[11px] mb-2">
+              Controls how long after amyloid build-up tau begins to accelerate.
+            </p>
+            <input
+              type="range"
+              min={0}
+              max={6}
+              step={0.5}
+              value={tauDelay}
+              onChange={e => setTauDelay(Number(e.target.value))}
+              className="w-full"
+            />
+          </div>
+
+          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-3">
+            <div className="flex justify-between mb-1">
+              <span className="font-medium text-slate-100">Neuro sensitivity</span>
+              <span className="text-slate-300">{neuroSensitivity.toFixed(2)}</span>
+            </div>
+            <p className="text-slate-400 text-[11px] mb-2">
+              Higher values make neurodegeneration respond more strongly to tau burden.
+            </p>
+            <input
+              type="range"
+              min={0.6}
+              max={2}
+              step={0.1}
+              value={neuroSensitivity}
+              onChange={e => setNeuroSensitivity(Number(e.target.value))}
+              className="w-full"
+            />
+          </div>
+        </div>
+
+        {/* Chart */}
+        <div className="h-72 md:h-80 min-w-0 bg-slate-950/60 border border-slate-800 rounded-xl p-3">
+          <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
+            <LineChart
+              data={data}
+              margin={{ top: 24, right: 28, bottom: 44, left: 44 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
+              <XAxis
+                dataKey="t"
+                stroke="#9ca3af"
+                tickLine={false}
+                label={{
+                  value: "Time (years)",
+                  position: "insideBottom",
+                  offset: -18,
+                }}
+              />
+
+              <YAxis
+                domain={[0, 1]}
+                stroke="#9ca3af"
+                tickLine={false}
+                label={{
+                  value: "Normalized biomarker lvl.",
+                  angle: -90,
+                  position: "insideLeft",
+                  offset: -18,
+                  textAnchor: "middle",
+                }}
+              />
+              <Tooltip
+                formatter={(value: unknown, name: unknown) => {
+                  if (typeof value !== "number") return [String(value), String(name)];
+                  return [`${value.toFixed(3)} (${asPct(value)})`, String(name)];
+                }}
+                labelFormatter={(label: unknown) => `Time: ${fmt(label)} years`}
+                contentStyle={{
+                  backgroundColor: "#020617",
+                  border: "1px solid #1f2937",
+                  borderRadius: 8,
+                  fontSize: 11,
+                }}
+              />
+              <Legend
+                verticalAlign="bottom"
+                height={36}
+                wrapperStyle={{ paddingTop: 36 }}
+              />
+              <Line type="monotone" dataKey="amyloid" stroke="#22d3ee" dot={false} name="Amyloid (A)" />
+              <Line type="monotone" dataKey="tau" stroke="#a855f7" dot={false} name="Tau (T)" />
+              <Line
+                type="monotone"
+                dataKey="neuro"
+                stroke="#f97316"
+                dot={false}
+                name="Neurodegeneration (N)"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        <p className="text-[11px] text-slate-500">
+          Note: the chart uses a logistic toy function to illustrate timing and sensitivity effects; it does not alter the GMM clustering results above.
+        </p>
+      </div>
       <SupervisedResultsPanel />
     </div>
   )

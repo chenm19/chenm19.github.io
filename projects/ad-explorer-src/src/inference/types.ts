@@ -7,15 +7,27 @@ export type ATNInput = {
   n: number;
 };
 
+export type NearestNeighborMeta = {
+  ptid: string;
+  stage5Actual: Stage5;
+  stage3Actual: Stage3;
+  /** distance between the user input and the nearest ADNI participant (same units as engine metric) */
+  distance: number;
+};
+
 export type InferenceResult = {
   requestId: string;
   input: ATNInput;
   probsStage5: Record<Stage5, number>;
   stage5Pred: Stage5;
   stage3Pred: Stage3;
+
+  /** optional metadata for UI; safe for existing callers */
+  nearest?: NearestNeighborMeta;
+
   model: {
-    id: string;      // "gmm-nearest" "rf" "transformer"
-    label: string;   // readable
+    id: string;
+    label: string;
     version?: string;
-  }
-}
+  };
+};
