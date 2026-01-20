@@ -59,25 +59,10 @@ function collapseStage3(stage5: Stage5): Stage3 {
   return "MCI";
 }
 
-function percentile(values: number[], p: number): number {
-  if (values.length === 0) return 0;
-  const sorted = [...values].sort((a, b) => a - b);
-  const idx = (sorted.length - 1) * p;
-  const lo = Math.floor(idx);
-  const hi = Math.ceil(idx);
-  if (lo === hi) return sorted[lo];
-  const t = idx - lo;
-  return sorted[lo] * (1 - t) + sorted[hi] * t;
-}
-
 // dataset scale stats
 const aVals = clusters.map(c => c.a);
 const tVals = clusters.map(c => c.t);
 const nVals = clusters.map(c => c.n);
-
-const A_MEAN = mean(aVals);
-const T_MEAN = mean(tVals);
-const N_MEAN = mean(nVals);
 
 const A_STD = std(aVals);
 const T_STD = std(tVals);
@@ -99,36 +84,6 @@ function l2Scaled(
   const dn = (n1 - n2) / N_STD;
   return da * da + dt * dt + dn * dn;
 }
-
-/**
- * estimate "typical" local spacing in standardized space, for for each point, compute distance to its nearest other point.
- */
-function computeNearestNeighborDistancesScaled(points: PatientClusterResult[]): number[] {
-  const nearestDists: number[] = [];
-
-  for (let i = 0; i < points.length; i += 1) {
-    let bestD2 = Infinity;
-    const p = points[i];
-
-    for (let j = 0; j < points.length; j += 1) {
-      if (i === j) continue;
-      const q = points[j];
-
-      const d2 = l2Scaled(p.a, p.t, p.n, q.a, q.t, q.n);
-      if (d2 < bestD2) bestD2 = d2;
-    }
-
-    nearestDists.push(Math.sqrt(bestD2));
-  }
-
-  return nearestDists;
-}
-
-const NN_DISTS_SCALED = computeNearestNeighborDistancesScaled(clusters);
-
-// “Far” = farther than 98% of points are from their nearest neighbor (in standardized space)
-// for fewer warnings, bump to 0.99–0.995. For more warnings, drop to 0.95 
-const OOD_THRESHOLD = percentile(NN_DISTS_SCALED, 0.98);
 
 export function inferGmmNearest(input: ATNInput): InferenceResult {
   let best = clusters[0];
