@@ -172,19 +172,19 @@ export default function Intro() {
         <div className="grid md:grid-cols-3 gap-3 text-[11px] md:text-xs text-slate-300">
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3">
             <div className="font-semibold text-slate-100 mb-1">
-              What is Alzheimer's disease?
+              What is Alzheimer's Disease?
             </div>
             <p>
-              Alzheimer's is the most common cause of dementia, a general term for memory
+              Alzheimer's disease is the most common cause of dementia, a general term for memory
               loss and other cognitive abilities serious enough to interfere with daily life.
-              Alzheimer's disease accounts for 60-80% of dementia cases.
+              Based on recent studies, Alzheimer's disease accounts for 60-80% of dementia cases.
             </p>
           </div>
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3">
             <div className="font-semibold text-slate-100 mb-1">How common is it?</div>
             <p>
               According to the Alzheimer's Association, over 7 million Americans are
-              currently living with Alzheimer's. This disease affects approximately 1 in 9
+              currently living with Alzheimer's, affecting approximately 1 in 9
               people age 65 and older. By 2050, this number is projected to rise to nearly 13
               million.
             </p>
@@ -192,8 +192,8 @@ export default function Intro() {
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3">
             <div className="font-semibold text-slate-100 mb-1">Can it be cured?</div>
             <p>
-              Unfortunately, no cure exists. However, certain treatments have been found to slow
-              progression for some people, helping them manage symptoms and supporting quality of
+              Unfortunately, no comprehensive cure exists. However, certain treatments have been found to slow
+              Alzheimer's progression in some people, helping them to manage symptoms and supporting quality of
               life for both the person and their caregivers.
             </p>
           </div>
@@ -209,7 +209,7 @@ export default function Intro() {
                 Explore the key brain regions affected in Alzheimer's
                 </h2>
                 <p className="text-[11px] text-slate-400 mb-3">
-                Hover or tap to highlight regions of the brain. The panel on the right explains
+                Hover or tap to highlight the different regions of the brain. The panel on the right explains
                 each area's function and how changes there can show up in everyday life.
                 </p>
                 <div className="flex justify-center">
