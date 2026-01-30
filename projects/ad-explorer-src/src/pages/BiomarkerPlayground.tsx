@@ -91,9 +91,9 @@ export default function BiomarkerPlayground() {
       {/* Biomarker trajectory controls and chart */}
       <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-3">
         <div>
-          <h2 className="text-lg md:text-xl font-semibold">Synthetic Biomarker Trajectories (A/T/N)</h2>
+          <h2 className="text-lg md:text-xl font-semibold"> Biomarker Trajectory (A/T/N) Prediction </h2>
           <p className="text-slate-300 text-sm mt-1 max-w-3xl">
-            These sliders control a simplified progression model that generates the time-series plot below. This is not a part of the GMM clustering model, instead we can visualize how quickly amyloid rises, when tau begins accelerating, and how strongly neurodegeneration responds to tau.
+            These sliders control a simplified progression model that generates the time-series plot below. This is not a part of the GMM clustering model, instead we can visualize how quickly amyloid rises, when tau begins accelerating, and neurodegeneration sensitivity to tau.
           </p>
         </div>
 
