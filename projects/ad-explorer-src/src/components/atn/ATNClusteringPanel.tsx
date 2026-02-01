@@ -203,8 +203,8 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
     const parent = canvas.parentElement;
     if (!parent) return;
 
-    const blue = hexToRgb("#2563eb");
-    const red = hexToRgb("#ef4444");
+    const yellow = hexToRgb("#fde047");
+    const blue = hexToRgb("#3b82f6");
 
     // projection settings (tune more to reduce center pile-up and use card space)
     const depth = 3.6;   // weaker perspective and less center pile-up
@@ -249,14 +249,87 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
 
       const pts = computePts(w, h);
 
+      // axis indicators (A, T, N) in screen space using same rotation + projection
+      const scale = Math.min(w, h) * 0.58;
+      const cx = w / 2;
+      const cy = h / 2;
+
+      const projectAxisPoint = (x: number, y: number, z: number) => {
+        const persp = 1 / (depth - z * 0.7);
+
+        const px0 = cx + x * scale * persp;
+        const py0 = cy - y * scale * persp;
+
+        const rx0 = px0 - cx;
+        const ry0 = py0 - cy;
+
+        return {
+          px: cx + rx0 * push * zoom + pan.x,
+          py: cy + ry0 * push * zoom + pan.y,
+        };
+      };
+
+      // Origin in normalized ATN space
+      const origin = projectAxisPoint(0, 0, 0);
+
+      // Use the same fixed angles as projected
+      const angleY = -0.7;
+      const angleX = 0.45;
+
+      // Build rotated unit vectors for each axis (A=x, T=y, N=z)
+      const unitA = (() => {
+        const ry = rotateY(1, 0, angleY);
+        const rx = rotateX(0, ry.z, angleX);
+        return { x: ry.x, y: rx.y, z: rx.z };
+      })();
+
+      const unitT = (() => {
+        const ry = rotateY(0, 0, angleY);
+        const rx = rotateX(1, ry.z, angleX);
+        return { x: ry.x, y: rx.y, z: rx.z };
+      })();
+
+      const unitN = (() => {
+        const ry = rotateY(0, 1, angleY);
+        const rx = rotateX(0, ry.z, angleX);
+        return { x: ry.x, y: rx.y, z: rx.z };
+      })();
+
+      // Axis length in normalized space
+      const axisLen = 1.5;
+
+      const aEnd = projectAxisPoint(unitA.x * axisLen, unitA.y * axisLen, unitA.z * axisLen);
+      const tEnd = projectAxisPoint(unitT.x * axisLen, unitT.y * axisLen, unitT.z * axisLen);
+      const nEnd = projectAxisPoint(unitN.x * axisLen, unitN.y * axisLen, unitN.z * axisLen);
+
+      const drawAxis = (end: { px: number; py: number }, label: "A" | "T" | "N") => {
+        ctx.save();
+        ctx.strokeStyle = "rgba(226, 232, 240, 0.22)";
+        ctx.lineWidth = 1;
+
+        ctx.beginPath();
+        ctx.moveTo(origin.px, origin.py);
+        ctx.lineTo(end.px, end.py);
+        ctx.stroke();
+
+        ctx.fillStyle = "rgba(226, 232, 240, 0.75)";
+        ctx.font = "11px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+        ctx.fillText(label, end.px + 4, end.py + 4);
+        ctx.restore();
+      };
+
+      drawAxis(aEnd, "A");
+      drawAxis(tEnd, "T");
+      drawAxis(nEnd, "N");
+
       // draw points
       for (const p of pts) {
         const sev = clamp01(p.severity);
-        const r = lerp(blue.r, red.r, sev);
-        const g = lerp(blue.g, red.g, sev);
-        const b = lerp(blue.b, red.b, sev);
+        const r = lerp(yellow.r, blue.r, sev);
+        const g = lerp(yellow.g, blue.g, sev);
+        const b = lerp(yellow.b, blue.b, sev);
 
-        const alpha = lerp(0.20, 0.85, sev);
+        const alpha = lerp(0.40, 0.92, sev);
         const radius = lerp(2.8, 5.2, p.depth) * lerp(0.9, 1.2, sev);
 
         ctx.beginPath();
@@ -265,7 +338,7 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
         ctx.fill();
       }
 
-      // highlight model-selected nearest point (cyan ring)
+      // highlight model-selected nearest point w/cyan ring
       if (highlightPtid) {
         const chosen = pts.find(p => p.ptid === highlightPtid);
         if (chosen) {
@@ -354,7 +427,7 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
       redraw();
     };
 
-    // wheel zoom (centered around current view; simplest + stable)
+    // wheel zoom (centered around current view; simple + stable)
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
       const next = clamp(zoom * (e.deltaY > 0 ? 0.92 : 1.08), 0.6, 6);
@@ -455,7 +528,7 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
         )}
 
         <div className="absolute right-3 top-3 text-[11px] text-slate-300 bg-slate-950/60 border border-slate-800 rounded-lg px-2 py-1">
-          Blue → Red severity (continuous)
+          Yellow → Blue severity (continuous)
         </div>
 
         <button
