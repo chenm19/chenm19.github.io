@@ -1,16 +1,20 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-{/* Abstracted Brain Lobe Component */}
+// Abstracted Brain Lobe Component
 import { BrainLobesOverlay } from '../components/BrainLobesOverlay'
 
-{/* Gifs */}
+// Gifs
 import amyloidGif from '../assets/biomarkers/amyloid.gif'
 import tauGif from '../assets/biomarkers/tau.gif'
 import neuroGif from '../assets/biomarkers/neurodegeneration.gif'
 
+// Brain Stages
+import amyloidPetImg from '../assets/brain_stages/AmyloidPET.png'
+import mriAdImg from '../assets/brain_stages/MRIAD.png'
+
 type RegionId = 'frontal' | 'temporal' | 'parietal' | 'occipital' | 'hippocampus'
-type StageId = 'preclinical' | 'mild' | 'moderate' | 'severe'
+type StageId = 'cn' | 'mci' | 'ad'
 
 const brainRegions: {
   id: RegionId
@@ -75,70 +79,52 @@ const stages: {
   careFocus: string
 }[] = [
   {
-    id: 'preclinical',
-    name: 'Preclinical Alzheimer’s',
-    label: 'Changes in the brain, but no clear symptoms yet',
+    id: 'cn',
+    name: 'Cognitively Normal (CN)',
+    label: 'Amyloid-positive biology may be present without clear symptoms',
     summary:
-      'Brain changes begin years before anyone notices memory problems. This stage can last a long time, and most people feel completely normal.',
+      'In the NIA-AA biological framework, Alzheimer’s pathology can be present before symptoms. A common early biological profile is amyloid-positive (A+) with no clear tau spread (T−) and no measurable neurodegeneration (N−). Many individuals remain fully independent and feel normal.',
     mainFeatures: [
-      'No clear day-to-day memory or thinking problems',
-      'Subtle changes might be seen only on brain scans or lab tests',
-      'People are usually fully independent and working, studying, or retired as usual',
+      'Often no noticeable day-to-day cognitive symptoms',
+      'Amyloid abnormality may be detectable on amyloid PET or fluid biomarkers',
+      'Brain structure typically appears preserved',
     ],
     careFocus:
-      'Research in this stage focuses on early detection and prevention, not on day-to-day care needs, because symptoms are not yet obvious.',
+      'Focus is on early detection and risk monitoring in research contexts, rather than symptom-driven care.',
   },
   {
-    id: 'mild',
-    name: 'Mild (early) stage',
-    label: 'Noticeable memory and thinking changes',
+    id: 'mci',
+    name: 'Mild Cognitive Impairment (MCI)',
+    label: 'A biological transition zone: tau spreads and early neurodegeneration may begin',
     summary:
-      'Mild forgetfulness becomes more than “normal aging.” People may lose track of recent conversations, misplace important objects, or need more reminders.',
+      'MCI is commonly where symptoms begin to emerge, but it is not defined by a single “canonical” scan. Biologically, it often corresponds to a transition from A+T+(N)− toward early (N)+ as tau pathology spreads and downstream damage begins.',
     mainFeatures: [
-      'Trouble remembering recent events or conversations',
-      'May repeat questions or misplace valuables',
-      'Difficulty organizing, planning, or managing money',
-      'Often still independent, but tasks take more effort and support',
+      'Noticeable cognitive change, but not dementia-level functional loss',
+      'Tau abnormality (T+) is typically present in AD-continuum cases',
+      'Early or subtle neurodegeneration may begin (N− → early N+)',
     ],
     careFocus:
-      'The focus is on support with organization, building routines, and monitoring changes over time while encouraging independence as much as possible.',
+      'Focus is on monitoring, support strategies, and planning, while maintaining independence as much as possible.',
   },
   {
-    id: 'moderate',
-    name: 'Moderate (middle) stage',
-    label: 'Longest stage, growing support needs',
+    id: 'ad',
+    name: 'Alzheimer’s Disease Dementia (AD)',
+    label: 'Advanced AD biology with measurable neurodegeneration',
     summary:
-      'This is often the longest stage. Memory and thinking problems clearly interfere with daily life, and behavior or mood changes can become more noticeable.',
+      'In later clinical stages, Alzheimer’s biology is typically amyloid-positive and tau-positive, with clear neurodegeneration (A+T+(N)+). Structural MRI may show hippocampal atrophy and enlarged ventricles, reflecting downstream tissue loss.',
     mainFeatures: [
-      'Increasing trouble remembering events and learning new things',
-      'Needs help with daily activities like dressing, grooming, or meal planning',
-      'May become confused about time or place',
-      'Personality or mood changes: withdrawal, agitation, suspicion, or hallucinations',
-      'Wandering and sleep problems may occur',
+      'Clear cognitive impairment with functional decline consistent with dementia',
+      'Tau pathology is typically widespread (T+)',
+      'Neurodegeneration is measurable (N+), including atrophy on MRI',
     ],
     careFocus:
-      'Care shifts toward safety, routines, and caregiver support. Planning for future care needs becomes essential.',
-  },
-  {
-    id: 'severe',
-    name: 'Severe (late) stage',
-    label: 'High dependence and physical decline',
-    summary:
-      'In the most advanced stage, people rely on others for nearly all care. Communication is limited, and physical abilities such as walking and swallowing can decline.',
-    mainFeatures: [
-      'Needs help with all activities (eating, bathing, moving)',
-      'Limited or no meaningful conversation',
-      'Often unaware of recent events or surroundings',
-      'Greater risk of infections such as pneumonia',
-    ],
-    careFocus:
-      'Care focuses on comfort, dignity, and supporting caregivers. Medical teams help manage pain, infections, and quality-of-life decisions.',
+      'Focus is on safety, support with daily living, caregiver support, and quality-of-life decisions.',
   },
 ]
 
 export default function Intro() {
   const [activeRegion, setActiveRegion] = useState<RegionId>('hippocampus')
-  const [activeStageId, setActiveStageId] = useState<StageId>('preclinical')
+  const [activeStageId, setActiveStageId] = useState<StageId>('cn')
 
   const activeRegionData = brainRegions.find(r => r.id === activeRegion)!
   const activeStage = stages.find(s => s.id === activeStageId)!
@@ -359,13 +345,10 @@ export default function Intro() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
           <div>
             <h2 className="text-sm font-semibold text-slate-100">
-              Stages of Alzheimer's disease
+              Clinical stages aligned with AT(N) biomarkers
             </h2>
             <p className="text-[11px] text-slate-400 max-w-2xl">
-              Alzheimer's usually follows a progressive pattern. Not everyone fits neatly
-              into a single stage, but this 4-stage view—preclinical, mild (early), moderate
-              (middle), and severe (late)—helps organize what's happening in the brain and
-              in daily life.
+              Modern frameworks separate Alzheimer’s biology (ATN) from symptoms. Below is a CN → MCI → AD clinical view that is aligned with the biological continuum: amyloid tends to appear first, followed by tau spread, and measurable neurodegeneration becomes clearer later.
             </p>
           </div>
         </div>
@@ -390,10 +373,45 @@ export default function Intro() {
         </div>
 
         {/* Active stage detail */}
-        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2 text-[12px]">
+        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2 text-[12px] flex flex-col items-center text-center">
           <h3 className="font-semibold text-slate-100">{activeStage.name}</h3>
           <p className="text-slate-200">{activeStage.summary}</p>
-          <div className="mt-1">
+          {activeStageId === 'cn' ? (
+            <img
+              src={amyloidPetImg}
+              alt="Amyloid PET scan showing cortical amyloid deposition with preserved brain structure"
+              className="w-[180px] mx-auto rounded-xl border border-white/10"
+              loading="lazy"
+            />
+          ) : null}
+
+          {activeStageId === 'mci' ? (
+            <div className="w-[180px] mx-auto rounded-xl border border-dashed border-white/20 bg-white/5 p-4 space-y-2">
+              <p className="text-[11px] text-slate-300 font-medium">
+                Transition zone (no single canonical scan)
+              </p>
+              <p className="text-[11px] text-slate-400">
+                MCI typically occurs as tau pathology spreads (T+) and early neurodegeneration begins (N− → early N+), biologically between CN and Alzheimer’s dementia.
+              </p>
+              <div className="flex items-center gap-2 text-[10px] text-slate-400">
+                <span>CN</span>
+                <div className="flex-1 h-[2px] bg-white/20" />
+                <span className="text-amber-300 font-medium">MCI</span>
+                <div className="flex-1 h-[2px] bg-white/20" />
+                <span>AD</span>
+              </div>
+            </div>
+          ) : null}
+
+          {activeStageId === 'ad' ? (
+            <img
+              src={mriAdImg}
+              alt="Structural MRI showing hippocampal atrophy and enlarged ventricles consistent with advanced neurodegeneration"
+              className="w-[180px] mx-auto rounded-xl border border-white/10"
+              loading="lazy"
+            />
+          ) : null}
+          <div className="mt-1 w-full max-w-3xl text-left">
             <div className="font-semibold text-slate-100 mb-1">Common features:</div>
             <ul className="list-disc list-inside space-y-0.5 text-slate-300">
               {activeStage.mainFeatures.map(feature => (
@@ -401,10 +419,17 @@ export default function Intro() {
               ))}
             </ul>
           </div>
-          <p className="mt-2 text-slate-400">
+          <p className="mt-2 text-slate-400 w-full max-w-3xl text-left">
             <span className="font-semibold text-slate-200">Care focus: </span>
             {activeStage.careFocus}
           </p>
+        </div>
+        <div className="mt-2 text-[10px] text-slate-500 max-w-3xl">
+          Brain stage images adapted from:{' '}
+          <span className="italic">
+            NIA-AA Research Framework: Toward a biological definition of Alzheimer's disease
+          </span>
+          , Clifford R. Jack Jr. et al., <span className="italic">Alzheimer's &amp; Dementia</span>, 2018. DOI: 10.1016/j.jalz.2018.02.018.
         </div>
       </section>
 
