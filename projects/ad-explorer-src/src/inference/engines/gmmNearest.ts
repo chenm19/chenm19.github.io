@@ -17,7 +17,7 @@ type PatientClusterResult = {
   posterior: Record<Stage5, number>;
 };
 
-const clusters: PatientClusterResult[] = (clustersData as PatientClusterResult[]).map(r => ({
+const clusters: PatientClusterResult[] = (clustersData as PatientClusterResult[]).map((r) => ({
   ...r,
   a: Number(r.a),
   t: Number(r.t),
@@ -33,38 +33,23 @@ function std(values: number[]): number {
   if (values.length === 0) return 1;
   const m = mean(values);
   const v = values.reduce((s, x) => s + (x - m) * (x - m), 0) / values.length;
-  // guard against zero variance to never divide by 0
   return Math.sqrt(v) || 1;
 }
 
-function argmaxStage5(probs: Record<Stage5, number>): Stage5 {
-  const keys = Object.keys(probs) as Stage5[];
-  let best: Stage5 = keys[0] ?? "CN";
-  for (const k of keys) {
-    if (probs[k] > probs[best]) best = k;
-  }
-  return best;
-}
-
 function collapseStage3(stage5: Stage5): Stage3 {
-  if (stage5 === "CN") return "CN";
+  if (stage5 === "CN" || stage5 === "SMC") return "CN";
   if (stage5 === "AD") return "AD";
   return "MCI";
 }
 
-// dataset scale stats
-const aVals = clusters.map(c => c.a);
-const tVals = clusters.map(c => c.t);
-const nVals = clusters.map(c => c.n);
+const aVals = clusters.map((c) => c.a);
+const tVals = clusters.map((c) => c.t);
+const nVals = clusters.map((c) => c.n);
 
 const A_STD = std(aVals);
 const T_STD = std(tVals);
 const N_STD = std(nVals);
 
-/**
- * squared Euclidean distance in standardized (z-score) space.
- * standardizing makes the A/T/N axes comparable so one dimension doesn't dominate distance.
- */
 function l2Scaled(
   a1: number,
   t1: number,
@@ -84,21 +69,19 @@ export function inferGmmNearest(input: ATNInput): InferenceResult {
   let bestD2 = Infinity;
 
   for (const c of clusters) {
-    // nearest neighbor is chosen in standardized space so A/T/N contribute comparably
     const d2 = l2Scaled(input.a, input.t, input.n, c.a, c.t, c.n);
-
     if (d2 < bestD2) {
       bestD2 = d2;
       best = c;
     }
   }
 
-  // distance is in standardized units (interpretable / stable)
   const distance = Math.sqrt(bestD2);
 
+  // Align prediction with the actual matched point
+  const stage5Pred = best.stage5;
+  const stage3Pred = best.stage3 ?? collapseStage3(best.stage5);
   const probsStage5 = best.posterior;
-  const stage5Pred = argmaxStage5(probsStage5);
-  const stage3Pred = collapseStage3(stage5Pred);
 
   const nearest: NearestNeighborMeta = {
     ptid: best.ptid,
@@ -117,6 +100,10 @@ export function inferGmmNearest(input: ATNInput): InferenceResult {
     stage5Pred,
     stage3Pred,
     nearest,
-    model: { id: "gmm-nearest", label: "GMM posterior (nearest neighbor)", version: "v0" },
+    model: {
+      id: "gmm-nearest",
+      label: "Nearest dataset point",
+      version: "v1",
+    },
   };
 }

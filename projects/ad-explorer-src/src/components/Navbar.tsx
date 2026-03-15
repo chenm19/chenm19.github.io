@@ -38,9 +38,13 @@ export default function Navbar() {
           <span className="text-sm md:text-base font-semibold tracking-tight text-cyan-300">
             AD Explorer
           </span>
-          <span className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] text-slate-500">
+          <a
+            href="https://chenm19.github.io/"
+            className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] text-slate-500"
+            aria-label="Go to Chen Lab main page"
+          >
             Chen Lab
-          </span>
+          </a>
         </div>
 
         {/* Desktop nav */}
