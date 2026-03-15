@@ -73,33 +73,26 @@ type Bounds = {
   maxN: number;
 };
 
-function percentile(values: number[], p: number) {
-  if (values.length === 0) return 0;
-  const sorted = [...values].sort((a, b) => a - b);
-  const idx = (sorted.length - 1) * p;
-  const lo = Math.floor(idx);
-  const hi = Math.ceil(idx);
-  if (lo === hi) return sorted[lo];
-  const t = idx - lo;
-  return sorted[lo] * (1 - t) + sorted[hi] * t;
+function minOf(values: number[]) {
+  return values.reduce((m, v) => Math.min(m, v), Number.POSITIVE_INFINITY);
+}
+
+function maxOf(values: number[]) {
+  return values.reduce((m, v) => Math.max(m, v), Number.NEGATIVE_INFINITY);
 }
 
 function computeBounds(points: PatientClusterResult[]): Bounds {
-  const a = points.map(p => p.a);
-  const t = points.map(p => p.t);
-  const n = points.map(p => p.n);
-
-  // Robust bounds: ignore extreme outliers for visualization scaling
-  const pLo = 0.05;
-  const pHi = 0.95;
+  const a = points.map((p) => p.a);
+  const t = points.map((p) => p.t);
+  const n = points.map((p) => p.n);
 
   return {
-    minA: percentile(a, pLo),
-    maxA: percentile(a, pHi),
-    minT: percentile(t, pLo),
-    maxT: percentile(t, pHi),
-    minN: percentile(n, pLo),
-    maxN: percentile(n, pHi),
+    minA: minOf(a),
+    maxA: maxOf(a),
+    minT: minOf(t),
+    maxT: maxOf(t),
+    minN: minOf(n),
+    maxN: maxOf(n),
   };
 }
 
@@ -491,7 +484,7 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
           This section uses a Gaussian Mixture Model (GMM) fit on the ATN matrix to assign each ADNI participant to one of five latent clusters behind the scenes before collapsing them into three visible stages (CN / MCI / AD).
         </p>
         <p className="text-[11px] text-slate-500">
-          Tip: scroll, zoom, and pan to navigate. This visualization has robust scaling to avoid outlier compression.
+          Tip: scroll, zoom, and pan to navigate. This visualization uses our dataset range to ensure screen positions stay aligned with the inference inputs.
         </p>
       </div>
 
