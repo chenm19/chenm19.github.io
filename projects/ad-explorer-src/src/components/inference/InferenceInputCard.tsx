@@ -96,13 +96,13 @@ export default function InferenceInputCard({ initial, engine, onChange }: Props)
             Real-time ATN Input
           </h3>
           <p className="text-slate-300 text-sm max-w-xl mt-1">
-            Sliders use the full raw range of the ATN dataset so nearest-point matching stays aligned with the data.
+            Sliders use the full raw range of the ATN dataset so ATN-space comparisons and neighborhood-based prediction stay aligned with the data.
           </p>
         </div>
 
         <div className="text-[11px] text-slate-400 text-right">
           <div className="font-medium text-slate-300">Engine</div>
-          <div>{engine}</div>
+          <div>Weighted kNN on raw dataset diagnoses</div>
         </div>
       </div>
 
@@ -166,7 +166,7 @@ export default function InferenceInputCard({ initial, engine, onChange }: Props)
       </div>
 
       <p className="text-[11px] text-slate-500">
-        Bounds now reflect the full dataset rather than trimmed percentile ranges.
+        Bounds reflect the full dataset.
       </p>
     </div>
   );

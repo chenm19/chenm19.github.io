@@ -2,9 +2,10 @@ import clustersData from "../../data/atn_clusters.json";
 import type {
   ATNInput,
   InferenceResult,
+  NearestNeighborMeta,
+  RawDx,
   Stage3,
   Stage5,
-  NearestNeighborMeta,
 } from "../types";
 
 type PatientClusterResult = {
@@ -15,6 +16,8 @@ type PatientClusterResult = {
   stage5: Stage5;
   stage3: Stage3;
   posterior: Record<Stage5, number>;
+  actualDx?: RawDx;
+  actualStage3?: Stage3;
 };
 
 const clusters: PatientClusterResult[] = (clustersData as PatientClusterResult[]).map((r) => ({
@@ -23,6 +26,8 @@ const clusters: PatientClusterResult[] = (clustersData as PatientClusterResult[]
   t: Number(r.t),
   n: Number(r.n),
 }));
+
+const stage5Order: Stage5[] = ["CN", "SMC", "EMCI", "LEMCI", "AD"];
 
 function mean(values: number[]): number {
   if (values.length === 0) return 0;
@@ -40,6 +45,15 @@ function collapseStage3(stage5: Stage5): Stage3 {
   if (stage5 === "CN" || stage5 === "SMC") return "CN";
   if (stage5 === "AD") return "AD";
   return "MCI";
+}
+
+function normalizeDxToStage5(dx?: RawDx): Stage5 | undefined {
+  if (!dx) return undefined;
+  if (dx === "LMCI") return "LEMCI";
+  if (dx === "CN" || dx === "SMC" || dx === "EMCI" || dx === "LEMCI" || dx === "AD") {
+    return dx;
+  }
+  return undefined;
 }
 
 const aVals = clusters.map((c) => c.a);
@@ -65,30 +79,65 @@ function l2Scaled(
 }
 
 export function inferGmmNearest(input: ATNInput): InferenceResult {
-  let best = clusters[0];
-  let bestD2 = Infinity;
+  const ranked = clusters
+    .map((c) => {
+      const d2 = l2Scaled(input.a, input.t, input.n, c.a, c.t, c.n);
+      return {
+        row: c,
+        d2,
+        distance: Math.sqrt(d2),
+      };
+    })
+    .sort((a, b) => a.d2 - b.d2);
 
-  for (const c of clusters) {
-    const d2 = l2Scaled(input.a, input.t, input.n, c.a, c.t, c.n);
-    if (d2 < bestD2) {
-      bestD2 = d2;
-      best = c;
-    }
-  }
-
-  const distance = Math.sqrt(bestD2);
-
-  // Align prediction with the actual matched point
-  const stage5Pred = best.stage5;
-  const stage3Pred = best.stage3 ?? collapseStage3(best.stage5);
-  const probsStage5 = best.posterior;
+  const best = ranked[0].row;
+  const nearestDistance = ranked[0].distance;
 
   const nearest: NearestNeighborMeta = {
     ptid: best.ptid,
-    stage5Actual: best.stage5,
-    stage3Actual: best.stage3,
-    distance,
+    stage5Actual: best.actualDx ?? best.stage5,
+    stage3Actual: best.actualStage3 ?? best.stage3,
+    distance: nearestDistance,
   };
+
+  const k = 9;
+  const neighbors = ranked.slice(0, Math.min(k, ranked.length));
+
+  const probsStage5: Record<Stage5, number> = {
+    CN: 0,
+    SMC: 0,
+    EMCI: 0,
+    LEMCI: 0,
+    AD: 0,
+  };
+
+  let totalWeight = 0;
+
+  for (const item of neighbors) {
+    const rawStage5 = normalizeDxToStage5(item.row.actualDx) ?? item.row.stage5;
+    const weight = 1 / (item.distance + 1e-6);
+
+    probsStage5[rawStage5] += weight;
+    totalWeight += weight;
+  }
+
+  if (totalWeight > 0) {
+    for (const key of stage5Order) {
+      probsStage5[key] /= totalWeight;
+    }
+  }
+
+  let stage5Pred: Stage5 = "CN";
+  let bestProb = -1;
+
+  for (const key of stage5Order) {
+    if (probsStage5[key] > bestProb) {
+      bestProb = probsStage5[key];
+      stage5Pred = key;
+    }
+  }
+
+  const stage3Pred = collapseStage3(stage5Pred);
 
   return {
     requestId:
@@ -102,8 +151,8 @@ export function inferGmmNearest(input: ATNInput): InferenceResult {
     nearest,
     model: {
       id: "gmm-nearest",
-      label: "Nearest dataset point",
-      version: "v1",
+      label: "Weighted kNN on raw dataset diagnoses",
+      version: "v2",
     },
   };
 }

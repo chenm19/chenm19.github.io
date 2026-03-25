@@ -91,10 +91,10 @@ export default function AgentsView() {
           <h2 className="text-sm font-semibold text-slate-100">What exists today</h2>
           <ul className="list-disc list-inside text-[12px] text-slate-300 space-y-1">
             <li>
-              An interactive front-end inference agent that accepts ATN inputs and returns real-time stage probabilities.
+              An interactive inference interface accepting ATN inputs and providing real-time neighborhood-based stage probabilities derived from nearby participants in ATN space.
             </li>
             <li>
-              An unsupervised clustering view (GMM-derived structure) to show how participants distribute in AT space.
+              An unsupervised ATN-space clustering view that shows how participants distribute across the biomarker landscape, with labeling + severity aligned to the original dataset diagnoses.
             </li>
             <li>
               Supervised baseline evaluation outputs (logistic regression + random forest metrics) for stage classification context.

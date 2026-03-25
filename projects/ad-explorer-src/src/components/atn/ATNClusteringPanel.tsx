@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import clustersData from "../../data/atn_clusters.json";
-
-type Stage5 = "CN" | "SMC" | "EMCI" | "LEMCI" | "AD";
-type Stage3 = "CN" | "MCI" | "AD";
+import type { RawDx, Stage3, Stage5 } from "../../inference/types";
 
 interface PatientClusterResult {
   ptid: string;
@@ -12,6 +10,8 @@ interface PatientClusterResult {
   stage5: Stage5;
   stage3: Stage3;
   posterior: Record<Stage5, number>;
+  actualDx?: RawDx;
+  actualStage3?: Stage3;
 }
 
 type Props = {
@@ -51,17 +51,21 @@ function rgbToCss(r: number, g: number, b: number, a = 1) {
   return `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${a})`;
 }
 
-/**
- * Continuous severity in [0,1] from posterior:
- * expected stage index / 4.
- */
-function severityFromPosterior(posterior: Record<Stage5, number>): number {
-  let expected = 0;
-  for (let i = 0; i < stage5Order.length; i += 1) {
-    const k = stage5Order[i];
-    expected += (posterior[k] ?? 0) * i;
+function severityFromDx(actualDx?: RawDx, actualStage3?: Stage3): number {
+  if (actualDx === "AD") return 1.0;
+
+  if (
+    actualDx === "EMCI" ||
+    actualDx === "LMCI" ||
+    actualDx === "LEMCI" ||
+    actualStage3 === "MCI"
+  ) {
+    return 0.6;
   }
-  return clamp01(expected / 4);
+
+  if (actualDx === "SMC") return 0.2;
+
+  return 0.0;
 }
 
 type Bounds = {
@@ -113,7 +117,7 @@ type ProjectedPoint = {
   depth: number;
   severity: number;
   stage3: Stage3;
-  stage5: Stage5;
+  stage5: RawDx | Stage5;
   a: number;
   t: number;
   n: number;
@@ -139,8 +143,8 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
 
   const stage3Counts: Record<Stage3, number> = useMemo(() => {
     const counts: Record<Stage3, number> = { CN: 0, MCI: 0, AD: 0 };
-    clusters.forEach(r => {
-      counts[r.stage3] += 1;
+    clusters.forEach((r) => {
+      counts[r.actualStage3 ?? r.stage3] += 1;
     });
     return counts;
   }, []);
@@ -176,9 +180,9 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
         px: 0,
         py: 0,
         depth: 0,
-        severity: severityFromPosterior(p.posterior),
-        stage3: p.stage3,
-        stage5: p.stage5,
+        severity: severityFromDx(p.actualDx, p.actualStage3),
+        stage3: p.actualStage3 ?? p.stage3,
+        stage5: p.actualDx ?? p.stage5,
         a: p.a,
         t: p.t,
         n: p.n,
@@ -481,10 +485,10 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
       <div className="space-y-2">
         <h2 className="text-lg md:text-xl font-semibold">Unsupervised ATN Clustering (preview)</h2>
         <p className="text-slate-300 text-sm max-w-2xl">
-          This section uses a Gaussian Mixture Model (GMM) fit on the ATN matrix to assign each ADNI participant to one of five latent clusters behind the scenes before collapsing them into three visible stages (CN / MCI / AD).
+          This section visualizes each ADNI participant from our dataset in ATN space using points derived from the underlying biomarker matrix. The spatial layout reflects structure in the ATN data, while the displayed stage labels and severity coloring are aligned to the original dataset diagnoses collapsed into three visible stages (CN / MCI / AD).
         </p>
         <p className="text-[11px] text-slate-500">
-          Tip: scroll, zoom, and pan to navigate. This visualization uses our dataset range to ensure screen positions stay aligned with the inference inputs.
+          Tip: scroll and zoom to navigate. This visualization uses our dataset range to ensure that screen positions stay aligned with the inference inputs.
         </p>
       </div>
 
@@ -521,7 +525,7 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
         )}
 
         <div className="absolute right-3 top-3 text-[11px] text-slate-300 bg-slate-950/60 border border-slate-800 rounded-lg px-2 py-1">
-          Yellow → Blue severity (continuous)
+          Low → High severity (continuous)
         </div>
 
         <button

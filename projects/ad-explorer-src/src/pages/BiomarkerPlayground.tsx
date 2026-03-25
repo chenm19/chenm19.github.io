@@ -66,7 +66,7 @@ export default function BiomarkerPlayground() {
   }, [amyloidRate, tauDelay, neuroSensitivity])
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 min-w-0">
       <div>
         <h1 className="text-xl md:text-2xl font-semibold">Biomarker Playground</h1>
         <p className="text-slate-300 text-sm mt-2 max-w-2xl">
@@ -74,31 +74,32 @@ export default function BiomarkerPlayground() {
           neurodegeneration might evolve over time in a simplified AT(N) framework.
         </p>
       </div>
-
-      <div className="grid lg:grid-cols-2 gap-4 items-stretch">
-        <InferenceInputCard engine={engine} onChange={handleAtnChange} />
-        <div className="lg:mt-0">
-          <ATNClusteringPanel highlightPtid={inferenceResult?.nearest?.ptid} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch min-w-0">
+          <div className="min-w-0">
+            <InferenceInputCard engine={engine} onChange={handleAtnChange} />
+          </div>
+          <div className="min-w-0 lg:mt-0">
+            <ATNClusteringPanel highlightPtid={inferenceResult?.nearest?.ptid} />
+          </div>
         </div>
-      </div>
 
-      <div className="flex justify-center">
-        <div className="w-full max-w-2xl">
+      <div className="flex justify-center min-w-0">
+        <div className="w-full max-w-2xl min-w-0">
           <Stage5ProbsCard result={inferenceResult} />
         </div>
       </div>
 
       {/* Biomarker trajectory controls and chart */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-3">
+      <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-3 min-w-0 overflow-hidden">
         <div>
           <h2 className="text-lg md:text-xl font-semibold"> Biomarker Trajectory (A/T/N) Prediction </h2>
           <p className="text-slate-300 text-sm mt-1 max-w-3xl">
-            These sliders control a simplified progression model that generates the time-series plot below. This is not a part of the GMM clustering model, instead we can visualize how quickly amyloid rises, when tau begins accelerating, and neurodegeneration sensitivity to tau.
+            These sliders control a simplified progression model that generates the time-series plot below. Here, we can visualize how quickly amyloid rises, when tau begins accelerating, and neurodegeneration sensitivity to tau.
           </p>
         </div>
 
         {/* Controls */}
-        <div className="grid md:grid-cols-3 gap-4 text-xs md:text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs md:text-sm min-w-0">
           <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-3">
             <div className="flex justify-between mb-1">
               <span className="font-medium text-slate-100">Amyloid speed</span>
@@ -158,7 +159,7 @@ export default function BiomarkerPlayground() {
         </div>
 
         {/* Chart */}
-        <div className="h-72 md:h-80 min-w-0 bg-slate-950/60 border border-slate-800 rounded-xl p-3">
+        <div className="h-72 md:h-80 min-w-0 w-full bg-slate-950/60 border border-slate-800 rounded-xl p-3 overflow-hidden">
           <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
             <LineChart
               data={data}

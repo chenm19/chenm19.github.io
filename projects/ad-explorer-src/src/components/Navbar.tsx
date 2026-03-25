@@ -40,9 +40,10 @@ export default function Navbar() {
           </span>
           <a
             href="https://chenm19.github.io/"
-            className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] text-slate-500"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/8 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-cyan-200/85 transition hover:border-cyan-400/40 hover:bg-cyan-500/12 hover:text-cyan-100"
             aria-label="Go to Chen Lab main page"
           >
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.7)]" />
             Chen Lab
           </a>
         </div>
