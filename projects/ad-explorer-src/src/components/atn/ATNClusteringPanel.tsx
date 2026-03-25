@@ -27,8 +27,6 @@ const clusters: PatientClusterResult[] = rawClusters.map(r => ({
   n: Number(r.n),
 }));
 
-const stage5Order: Stage5[] = ["CN", "SMC", "EMCI", "LEMCI", "AD"];
-
 function clamp01(x: number) {
   return Math.max(0, Math.min(1, x));
 }

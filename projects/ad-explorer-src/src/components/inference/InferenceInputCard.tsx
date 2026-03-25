@@ -1,11 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import clustersData from "../../data/atn_clusters.json";
 import type { ATNInput } from "../../inference/types";
-import type { EngineId } from "../../inference/infer";
 
 type Props = {
   initial?: ATNInput;
-  engine: EngineId;
   onChange: (input: ATNInput) => void;
 };
 
@@ -34,7 +32,7 @@ function useDebouncedValue<T>(value: T, delayMs: number) {
   return debounced;
 }
 
-export default function InferenceInputCard({ initial, engine, onChange }: Props) {
+export default function InferenceInputCard({ initial, onChange }: Props) {
   const bounds = useMemo(() => {
     const rows = clustersData as ClusterRow[];
 
