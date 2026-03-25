@@ -39,14 +39,13 @@ export default function BiomarkerPlayground() {
   const [amyloidRate, setAmyloidRate] = useState(0.35)
   const [tauDelay, setTauDelay] = useState(3)
   const [neuroSensitivity, setNeuroSensitivity] = useState(1.2)
-  const engine = "gmm-nearest";
 
   const [inferenceResult, setInferenceResult] = useState<InferenceResult | null>(null);
 
   const handleAtnChange = useCallback((input: ATNInput) => {
-    const r = infer(input, engine);
+    const r = infer(input, "gmm-nearest");
     setInferenceResult(r);
-  }, [engine]);
+  }, []);
 
   const data: BiomarkerPoint[] = useMemo(() => {
     const points: BiomarkerPoint[] = []
@@ -76,7 +75,7 @@ export default function BiomarkerPlayground() {
       </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch min-w-0">
           <div className="min-w-0">
-            <InferenceInputCard engine={engine} onChange={handleAtnChange} />
+            <InferenceInputCard onChange={handleAtnChange} />
           </div>
           <div className="min-w-0 lg:mt-0">
             <ATNClusteringPanel highlightPtid={inferenceResult?.nearest?.ptid} />
