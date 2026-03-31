@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import clustersData from "../../data/atn_clusters.json";
 import type { RawDx, Stage3, Stage5 } from "../../inference/types";
+import { anonymizePtid } from "../../utils/anonymize";
 
 interface PatientClusterResult {
   ptid: string;
@@ -105,6 +106,13 @@ function normalize(v: number, min: number, max: number) {
   return ((vv - min) / (max - min)) * 2 - 1;
 }
 
+function normalizeDxDisplay(dx?: RawDx): Stage5 | undefined {
+  if (!dx) return undefined;
+  if (dx === "LMCI") return "LEMCI";
+  if (dx === "CN" || dx === "SMC" || dx === "EMCI" || dx === "LEMCI" || dx === "AD") return dx;
+  return undefined;
+}
+
 type ProjectedPoint = {
   ptid: string;
   x: number;
@@ -115,7 +123,7 @@ type ProjectedPoint = {
   depth: number;
   severity: number;
   stage3: Stage3;
-  stage5: RawDx | Stage5;
+  stage5: Stage5;
   a: number;
   t: number;
   n: number;
@@ -180,7 +188,7 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
         depth: 0,
         severity: severityFromDx(p.actualDx, p.actualStage3),
         stage3: p.actualStage3 ?? p.stage3,
-        stage5: p.actualDx ?? p.stage5,
+        stage5: normalizeDxDisplay(p.actualDx) ?? p.stage5,
         a: p.a,
         t: p.t,
         n: p.n,
@@ -508,7 +516,7 @@ export default function ATNClusteringPanel({ highlightPtid }: Props) {
             className="pointer-events-none absolute z-10 bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs shadow-lg"
             style={{ left: hoverPos.x, top: hoverPos.y }}
           >
-            <div className="font-semibold text-slate-100 mb-1">Participant: {hovered.ptid}</div>
+            <div className="font-semibold text-slate-100 mb-1">Participant: {anonymizePtid(hovered.ptid)}</div>
             <div className="text-slate-300">
               Stage: {hovered.stage3} ({hovered.stage5})
             </div>

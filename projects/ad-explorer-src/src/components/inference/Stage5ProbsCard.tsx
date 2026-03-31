@@ -1,4 +1,5 @@
 import type { InferenceResult, Stage5 } from "../../inference/types";
+import { anonymizePtid } from "../../utils/anonymize";
 
 const order: Stage5[] = ["CN", "SMC", "EMCI", "LEMCI", "AD"];
 
@@ -31,7 +32,7 @@ export default function Stage5ProbsCard({ result }: Props) {
         <div className="bg-slate-950/50 border border-slate-800 rounded-lg px-3 py-2 text-[11px]">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="text-slate-300">
-              Nearest: <span className="text-slate-100 font-medium">{nearest.ptid}</span>
+              Nearest: <span className="text-slate-100 font-medium">{anonymizePtid(nearest.ptid)}</span>
             </div>
             <div className="text-slate-400">
               Actual: {nearest.stage5Actual} → {nearest.stage3Actual}

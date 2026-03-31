@@ -10,7 +10,7 @@ export type ATNInput = {
 
 export type NearestNeighborMeta = {
   ptid: string;
-  stage5Actual: RawDx | Stage5;
+  stage5Actual: Stage5;
   stage3Actual: Stage3;
   distance: number;
 };

@@ -18,7 +18,7 @@ export default function About() {
           The AI & Computational Biology Lab @ Wake Forest University
         </a>.
         <br /><br />
-        This project endeavors to create an accessible, intuitive environment to support the understanding Alzheimer's' disease biomarkers-particularly the dynamics of the established amyloid, tau, and neurodegeneration AT(N) framework. Rather than relying on static examples, this project focuses on interactive tools help students, researchers, and clinicians experiment with conceptual disease timelines and visualize how differing modeling assumptions can influence their predicted outcomes.
+        This project endeavors to create an educational, intuitive Alzheimer's' disease tool. Understanding such a complex disease can require frustratingly abstract thinking, so we suggest a simplified viewing experience through biomarkers and the dynamics of the established amyloid, tau, and neurodegeneration AT(N) framework. Rather than relying on traditional static examples, this project focuses on interactive tools help students, researchers, and clinicians experiment with conceptual disease timelines and visualize how differing modeling assumptions can influence their predicted outcomes.
       </p>
 
       {/* Contributor Section */}
@@ -30,7 +30,7 @@ export default function About() {
             <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-2">
               <img
                 src={graysonPhoto}
-                alt="Grayson Y. Gooden"
+                alt="Grayson Y Gooden"
                 className="w-full aspect-square object-cover rounded-lg"
                 loading="lazy"
               />
@@ -40,9 +40,9 @@ export default function About() {
             <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
               <p className="text-slate-300 text-sm leading-relaxed">
                 <span className="font-semibold text-slate-100">Grayson Y. Gooden </span>
-                is a senior at Wake Forest University pursuing a degree in Computer Science, passionate about machine learning, computational modeling, and applied Artificial Intelligence.
+                is a senior at Wake Forest University pursuing a degree in Computer Science, especially passionate about machine learning, computational modeling, and applied AI. He will be pursuing a Master's in Software Management next year in Silicon Valley.
                 <br /><br />
-                His contributions include full-stack development of the interactive platform, integration of agent-based and dynamical-systems components, and design of visual tools to support research initiatives. He is also passionate about balancing technical research with public education, which is a significant objective behind many of the components in this explorer.
+                His contributions include the full-stack development of the interactive platform, design of dynamic agent-based components, and creative visual tools to support research initiatives. He is also passionate about balancing technical research with public education, a significant objective behind the components in this explorer.
               </p>
             </div>
           </div>

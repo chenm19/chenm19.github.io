@@ -95,12 +95,12 @@ export function inferGmmNearest(input: ATNInput): InferenceResult {
 
   const nearest: NearestNeighborMeta = {
     ptid: best.ptid,
-    stage5Actual: best.actualDx ?? best.stage5,
+    stage5Actual: normalizeDxToStage5(best.actualDx) ?? best.stage5,
     stage3Actual: best.actualStage3 ?? best.stage3,
     distance: nearestDistance,
   };
 
-  const k = 9;
+  const k = 11;
   const neighbors = ranked.slice(0, Math.min(k, ranked.length));
 
   const probsStage5: Record<Stage5, number> = {
@@ -113,9 +113,11 @@ export function inferGmmNearest(input: ATNInput): InferenceResult {
 
   let totalWeight = 0;
 
+  // Gaussian kernel with bandwidth h=1 in normalized ATN space (one std dev per axis).
+  // More principled than inverse-distance: gives a smooth, fast decay beyond 1–2 std devs.
   for (const item of neighbors) {
     const rawStage5 = normalizeDxToStage5(item.row.actualDx) ?? item.row.stage5;
-    const weight = 1 / (item.distance + 1e-6);
+    const weight = Math.exp(-item.d2 / 2);
 
     probsStage5[rawStage5] += weight;
     totalWeight += weight;
@@ -151,8 +153,8 @@ export function inferGmmNearest(input: ATNInput): InferenceResult {
     nearest,
     model: {
       id: "gmm-nearest",
-      label: "Weighted kNN on raw dataset diagnoses",
-      version: "v2",
+      label: "Nearest-neighbor prediction derived from 11 closest participants by Gaussian distance",
+      version: "v3",
     },
   };
 }
