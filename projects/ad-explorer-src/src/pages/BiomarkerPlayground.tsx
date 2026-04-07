@@ -5,6 +5,7 @@ import type { ATNInput, InferenceResult } from "../inference/types";
 import { infer } from "../inference/infer";
 import InferenceInputCard from "../components/inference/InferenceInputCard";
 import Stage5ProbsCard from "../components/inference/Stage5ProbsCard";
+import ExplanationCard from "../components/inference/ExplanationCard";
 import {
   ResponsiveContainer,
   LineChart,
@@ -69,7 +70,7 @@ export default function BiomarkerPlayground() {
       <div>
         <h1 className="text-xl md:text-2xl font-semibold">Biomarker Playground</h1>
         <p className="text-slate-300 text-sm mt-2 max-w-2xl">
-          Adjust the parameters to see how amyloid build-up, tau pathology, and
+          Adjust parameters to visualize how amyloid build-up, tau pathology, and
           neurodegeneration might evolve over time in a simplified AT(N) framework.
         </p>
       </div>
@@ -83,8 +84,9 @@ export default function BiomarkerPlayground() {
         </div>
 
       <div className="flex justify-center min-w-0">
-        <div className="w-full max-w-2xl min-w-0">
+        <div className="w-full max-w-2xl min-w-0 space-y-3">
           <Stage5ProbsCard result={inferenceResult} />
+          <ExplanationCard result={inferenceResult} />
         </div>
       </div>
 
@@ -93,7 +95,7 @@ export default function BiomarkerPlayground() {
         <div>
           <h2 className="text-lg md:text-xl font-semibold"> Biomarker Trajectory (A/T/N) Prediction </h2>
           <p className="text-slate-300 text-sm mt-1 max-w-3xl">
-            These sliders control a simplified progression model that generates the time-series plot below. Here, we can visualize how quickly amyloid rises, when tau begins accelerating, and neurodegeneration sensitivity to tau.
+            These sliders control a simplified progression model, generating the time-series plot below. Observe how quickly amyloid rises, when tau begins accelerating, and neurodegeneration sensitivity to tau.
           </p>
         </div>
 
@@ -220,7 +222,7 @@ export default function BiomarkerPlayground() {
         </div>
 
         <p className="text-[11px] text-slate-500">
-          Note: the chart uses a logistic toy function to illustrate timing and sensitivity effects; it does not alter the GMM clustering results above.
+          Note: the chart uses a logistic toy function to illustrate timing and sensitivity effects; it does not alter the ATN clustering results above.
         </p>
       </div>
       <SupervisedResultsPanel />

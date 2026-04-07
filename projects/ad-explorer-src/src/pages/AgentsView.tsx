@@ -34,7 +34,7 @@ export default function AgentsView() {
           </div>
           <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-3">
             <div className="font-semibold text-slate-100">Data/Explanation agents</div>
-            <div className="text-slate-400 mt-1">In progress (anonymization live, explanation planned)</div>
+            <div className="text-slate-400 mt-1">Explanation live, anonymization live, deeper curation ongoing</div>
           </div>
         </div>
       </div>
@@ -102,6 +102,9 @@ export default function AgentsView() {
               Anonymized participant identifiers at the display layer, with underlying data and clustering positions unchanged.
             </li>
             <li>
+              A rule-based explanation agent that generates plain-language interpretations of each inference result, derived from biomarker levels and stage probabilities.
+            </li>
+            <li>
               A visualization-first UI prioritizing interpretability through interactive exploration.
             </li>
           </ul>
@@ -117,7 +120,7 @@ export default function AgentsView() {
               A data agent that supplies curated cohort presets and consistent feature normalization for inference (display-layer anonymization is live; deeper curation is ongoing).
             </li>
             <li>
-              An explanation agent that generates audience-adaptive interpretations of outputs.
+              An audience-adaptive explanation agent with richer, context-sensitive interpretations as more modeling layers are added.
             </li>
             <li>
               A coordinator layer that orchestrates the above agents across routes and keeps the user&apos;s context synchronized across views.
