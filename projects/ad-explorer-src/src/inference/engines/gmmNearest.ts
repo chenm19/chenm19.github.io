@@ -153,7 +153,7 @@ export function inferGmmNearest(input: ATNInput): InferenceResult {
     nearest,
     model: {
       id: "gmm-nearest",
-      label: "Nearest-neighbor prediction derived from 11 closest participants by Gaussian distance",
+      label: "Gaussian kernel regression over 11 nearest neighbors",
       version: "v3",
     },
   };

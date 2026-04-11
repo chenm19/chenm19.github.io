@@ -5,7 +5,7 @@
     "MCI",
     "AD"
   ],
-  "n_samples": 270,
+  "n_samples": 269,
   "models": {
     "logistic_regression": {
       "name": "logistic_regression",
